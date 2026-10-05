@@ -254,6 +254,10 @@ const acct=()=>S.accounts.find(a=>a.id===S.activeId)||S.accounts[0];
 /* ---------- 工具 ---------- */
 function todayStr(d){d=d||new Date();
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function fmtTime(ts){const d=new Date(ts);
+  return String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0')+' '+
+         String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
+function addDays(dateStr,n){const d=new Date(dateStr+'T00:00:00');d.setDate(d.getDate()+n);return todayStr(d);}
 function nf(n,d){d=d==null?0:d;
   return (Math.round((n||0)*Math.pow(10,d))/Math.pow(10,d)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function money(n,d){const v=S.hide?'****':nf(n,d||0);return 'NT$ '+v;}
@@ -350,9 +354,10 @@ function divAmount(d){
   return Math.round((+d.perShare||0)*(+d.shares||0)-(+d.tax||0));
 }
 /* 某日期時的持股（用於除息事件推算） */
-function sharesAt(code,date){
+function sharesAt(code,date,strict){
+  // strict=true：只算「早於」該日的交易（除息日當天才買進的股票沒有配息權利）
   const b=book();let s=0;
-  b.trades.filter(t=>t.code===code&&t.date<=date).forEach(t=>{s+=t.type==='buy'?t.shares:-t.shares;});
+  b.trades.filter(t=>t.code===code&&(strict?t.date<date:t.date<=date)).forEach(t=>{s+=t.type==='buy'?t.shares:-t.shares;});
   return s;
 }
 
@@ -563,14 +568,19 @@ function viewDivs(){
 
   let h='<div class="sec-title">🔔 待確認配息</div>';
   h+=pend.length?pend.map(e=>{
-      const sh=e.shares!=null?e.shares:sharesAt(e.code,e.exDate);
+      const sh=e.shares!=null?e.shares:sharesAt(e.code,e.exDate,true);
+      const hasPs=e.perShare!=null&&+e.perShare>0;
       const amt=Math.round((+e.perShare||0)*sh);
       return '<div class="item" style="border-left:4px solid #f59e0b">'+
         '<div class="hl"><div><span class="code">'+esc(e.code)+'</span> <span class="nm">'+esc(e.name||stockName(e.code))+'</span></div>'+
-        '<div class="code" style="color:var(--green-soft)">'+money(amt)+'</div></div>'+
-        '<div class="nm" style="margin:6px 0 12px">已於 '+esc(e.exDate)+' 除息｜每股 '+nf(e.perShare,3)+' 元 '+
-        '<span class="tag ok">✓ 已公告</span> × 當時持股 '+nf(sh)+' 股</div>'+
-        '<div class="btn2"><button class="btn green" data-add="'+e.id+'">✓ 自動新增</button>'+
+        '<div class="code" style="color:var(--green-soft)">'+(hasPs?money(amt):'—')+'</div></div>'+
+        '<div class="nm" style="margin:6px 0 12px">已於 '+esc(e.exDate)+' 除息｜'+
+        (hasPs?'每股 '+nf(e.perShare,3)+' 元 <span class="tag ok">✓ 已公告</span>'
+              :'<span class="tag">每股金額尚未公告</span>')+
+        ' × 當時持股 '+nf(sh)+' 股'+(e.payDate?'｜預計 '+esc(e.payDate)+' 發放':'')+'</div>'+
+        '<div class="btn2">'+(hasPs
+          ?'<button class="btn green" data-add="'+e.id+'">✓ 自動新增</button>'
+          :'<button class="btn primary" data-ev="'+e.id+'">輸入金額</button>')+
         '<button class="btn" data-ign="'+e.id+'">✕ 忽略</button></div></div>';
     }).join('')
    :'<div class="card empty">目前沒有待確認的配息</div>';
@@ -579,10 +589,14 @@ function viewDivs(){
   h+=soon.length?soon.map(e=>{
       const d=Math.ceil((new Date(e.exDate)-new Date(today))/86400000);
       const sh=sharesAt(e.code,today);
+      const hasPs=e.perShare!=null&&+e.perShare>0;
       return '<div class="item"><div class="hl"><div><span class="code">'+esc(e.code)+'</span> '+
         '<span class="nm">'+esc(e.name||stockName(e.code))+'</span></div>'+
         '<div class="tag">'+d+' 天後除息</div></div>'+
-        '<div class="nm" style="margin-top:6px">'+esc(e.exDate)+' 除息｜每股 '+nf(e.perShare,3)+' 元 × 目前持股 '+nf(sh)+' 股 ≈ '+money(Math.round(e.perShare*sh))+'</div>'+
+        '<div class="nm" style="margin-top:6px">'+esc(e.exDate)+' 除息｜'+
+        (hasPs?'每股 '+nf(e.perShare,3)+' 元 × 目前持股 '+nf(sh)+' 股 ≈ '+money(Math.round(e.perShare*sh))
+              :'每股金額尚未公告｜目前持股 '+nf(sh)+' 股')+
+        (e.payDate?'｜預計 '+esc(e.payDate)+' 發放':'')+'</div>'+
         '<div class="swipe"><button class="btn sm ghost" data-ev="'+e.id+'">編輯</button></div></div>';
     }).join('')
    :'<div class="card empty">目前無已公告的除息事件</div>';
@@ -604,14 +618,19 @@ function viewDivs(){
   }
   if(!inP.length&&u.dvPeriod!=='all'&&b.divs.length)
     h+='<div class="card empty"><button class="btn sm primary" id="dvAll">查看全部 '+b.divs.length+' 筆配息</button></div>';
-  h+='<div class="swipe" style="margin-bottom:10px"><button class="btn ghost block" id="addEv">＋ 新增除息公告</button></div>';
+  h+='<div class="btn2" style="margin:12px 0 6px;grid-template-columns:1fr 1fr">'+
+     '<button class="btn ghost" id="syncDiv">'+(divBusy?'<span class="spin"></span> 更新中…':'↻ 更新配息公告')+'</button>'+
+     '<button class="btn ghost" id="addEv">＋ 手動新增公告</button></div>'+
+     '<p class="muted" style="font-size:12px;margin:0 4px 10px">'+
+     (S.divSync?'公告資料更新於 '+esc(fmtTime(S.divSync))+'。':'尚未更新過公告資料。')+
+     '資料來源：證交所除權息預告與 ETF 配息公告，只比對你持有的股票；每股金額通常在除息日前才會公布。</p>';
 
   setView(h,'div');
   $$('#view [data-nav]').forEach(x=>x.onclick=()=>{S.ui.dvAnchor=shiftAnchor(u.dvAnchor,u.dvPeriod,+x.dataset.nav);save();render();});
   $$('#view [data-p]').forEach(x=>x.onclick=()=>{S.ui.dvPeriod=x.dataset.p;save();render();});
   $$('#view [data-add]').forEach(x=>x.onclick=()=>{
     const e=book().events.find(z=>z.id===x.dataset.add);if(!e)return;
-    const sh=e.shares!=null?e.shares:sharesAt(e.code,e.exDate);
+    const sh=e.shares!=null?e.shares:sharesAt(e.code,e.exDate,true);
     book().divs.push({id:uid(),code:e.code,name:e.name||stockName(e.code),date:e.payDate||e.exDate,
       perShare:+e.perShare,shares:sh,tax:0,amount:Math.round((+e.perShare||0)*sh)});
     e.status='added';save();render();toast('已新增配息記錄');
@@ -623,6 +642,7 @@ function viewDivs(){
   $$('#view [data-dv]').forEach(el=>el.onclick=()=>divForm(book().divs.find(z=>z.id===el.dataset.dv)));
   if($('#dvAll'))$('#dvAll').onclick=()=>{S.ui.dvPeriod='all';save();render();};
   $('#addEv').onclick=()=>eventForm();
+  $('#syncDiv').onclick=()=>syncDividends(true);
 }
 
 /* =================== 分析 =================== */
@@ -863,6 +883,97 @@ function fetchQuotes(force){
     save();quoteBusy=false;render();
     toast(n?('已更新 '+n+' 檔報價'):'查無對應報價');
   }).catch(e=>{quoteBusy=false;render();toast(e.message);});
+}
+
+/* =================== 配息公告自動抓取 =================== */
+let divBusy=false;
+/* '1151021'（民國）、'115年10月21日'、'2026-10-21' → 'YYYY-MM-DD'，認不出來回傳 '' */
+function rocDate(s){
+  s=String(s==null?'':s).trim();
+  let m=s.match(/^(\d{2,3})(\d{2})(\d{2})$/);
+  if(m)return(+m[1]+1911)+'-'+m[2]+'-'+m[3];
+  m=s.match(/(\d{2,3})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/);
+  if(m)return(+m[1]+1911)+'-'+String(m[2]).padStart(2,'0')+'-'+String(m[3]).padStart(2,'0');
+  m=s.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})$/);
+  if(m)return m[1]+'-'+String(m[2]).padStart(2,'0')+'-'+String(m[3]).padStart(2,'0');
+  return '';
+}
+/* 每股配息：空字串／null／非數字 → null（代表尚未公告） */
+function parsePs(v){
+  if(v==null)return null;
+  const t=String(v).trim();
+  if(!t||t.length>20)return null;
+  const n=parseFloat(t.replace(/,/g,'').replace(/[^\d.]/g,''));
+  return isFinite(n)&&n>0?n:null;
+}
+/* 把抓到的公告合併進「除息事件」。found: {code|exDate: {code,name,exDate,payDate,perShare}} */
+function mergeDivEvents(found,codes){
+  const b=book(),today=todayStr(),limit=addDays(today,-45);
+  let added=0,updated=0;
+  Object.keys(found).forEach(k=>{
+    const f=found[k];
+    if(f.exDate<limit)return;
+    let ev=b.events.find(e=>e.code===f.code&&e.exDate===f.exDate);
+    if(ev){
+      // 只自動更新「自動建立、尚未處理」的事件；你手動改過或已處理的不動
+      if(ev.auto&&ev.status==='pending'){
+        let ch=false;
+        if(f.perShare!=null&&ev.perShare!==f.perShare){ev.perShare=f.perShare;ch=true;}
+        if(f.payDate&&ev.payDate!==f.payDate){ev.payDate=f.payDate;ch=true;}
+        if(f.name&&!ev.name)ev.name=f.name;
+        if(ch)updated++;
+      }
+      return;
+    }
+    // 除息日當天之前沒持有就沒有配息權利
+    const sh=f.exDate>today?sharesAt(f.code,today):sharesAt(f.code,f.exDate,true);
+    if(sh<=0)return;
+    // 已經手動補登過這次配息就不重複建立
+    const lim2=addDays(f.exDate,35);
+    if(b.divs.some(d=>d.code===f.code&&d.date>=f.exDate&&d.date<=lim2))return;
+    b.events.push({id:uid(),code:f.code,name:f.name||stockName(f.code),exDate:f.exDate,
+      payDate:f.payDate||'',perShare:f.perShare,status:'pending',auto:true});
+    if(f.name)setName(f.code,f.name);
+    added++;
+  });
+  return{added,updated};
+}
+function syncDividends(manual){
+  const b=book();
+  const codes=Array.from(new Set(b.trades.map(t=>t.code)));
+  if(!codes.length){if(manual)toast('尚無持股，先新增交易');return Promise.resolve();}
+  if(divBusy)return Promise.resolve();
+  divBusy=true;if(TAB==='divs')render();
+  const found={};
+  const put=(code,name,ex,pay,ps)=>{
+    code=String(code||'').trim().toUpperCase();
+    if(!ex||codes.indexOf(code)<0)return;
+    const k=code+'|'+ex;
+    const o=found[k]||(found[k]={code,name:'',exDate:ex,payDate:'',perShare:null});
+    if(name)o.name=name;if(pay)o.payDate=pay;if(ps!=null)o.perShare=ps;
+  };
+  // ① 除權除息預告表（上市股票與 ETF：除息日，部分有每股現金股利）
+  const p1=jget('https://openapi.twse.com.tw/v1/exchangeReport/TWT48U_ALL').then(arr=>{
+    (arr||[]).forEach(o=>{
+      if(String(o.Exdividend||'').indexOf('息')<0)return;
+      put(o.Code,o.Name,rocDate(o.Date),'',parsePs(o.CashDividend));
+    });return true;
+  }).catch(e=>{console.warn('TWT48U',e);return false;});
+  // ② ETF 收益分配公告（除息日、基準日、發放日、每單位分配金額）
+  const p2=jget('https://www.twse.com.tw/rwd/zh/ETF/etfDiv?response=json').then(j=>{
+    ((j&&j.data)||[]).forEach(r=>put(r[0],r[1],rocDate(r[2]),rocDate(r[4]),parsePs(r[5])));
+    return true;
+  }).catch(e=>{console.warn('etfDiv',e);return false;});
+  return Promise.all([p1,p2]).then(res=>{
+    if(!res[0]&&!res[1])throw new Error('無法連線到證交所，請稍後再試');
+    const r=mergeDivEvents(found,codes);
+    S.divSync=Date.now();save();
+    divBusy=false;render();
+    if(manual)toast(r.added||r.updated?('配息公告：新增 '+r.added+' 筆、更新 '+r.updated+' 筆'):'沒有新的配息公告');
+  }).catch(e=>{
+    divBusy=false;render();
+    if(manual)toast(e.message);
+  });
 }
 
 /* =================== 設定 =================== */
@@ -1168,7 +1279,7 @@ function eventForm(e){
       '<div class="field"><label>名稱（選填）</label><input id="e_name" value="'+esc(e.name||'')+'"></div>'+
       '<div class="field"><label>除息日</label><input id="e_ex" type="date" value="'+esc(e.exDate)+'"></div>'+
       '<div class="field"><label>發放日（選填）</label><input id="e_pay" type="date" value="'+esc(e.payDate||'')+'"></div>'+
-      '<div class="field"><label>每股配息</label><input id="e_ps" type="number" step="0.0001" inputmode="decimal" value="'+e.perShare+'"></div>'+
+      '<div class="field"><label>每股配息</label><input id="e_ps" type="number" step="0.0001" inputmode="decimal" value="'+(e.perShare==null?'':e.perShare)+'" placeholder="例：0.138"></div>'+
     '</div>'+
     '<p class="muted" style="font-size:13px;margin-top:0">除息日到了之後，會出現在「待確認配息」，按一下就能自動換算持股並入帳。</p>'+
     '<div class="btn2"><button class="btn primary" id="e_save">儲存</button>'+
@@ -1214,6 +1325,8 @@ function init(){
   $('#avatarBtn').onclick=editProfile;
   render();
   if(book().trades.length)setTimeout(()=>fetchQuotes(false),600);
+  // 配息公告：開啟時若距離上次更新超過 3 小時就自動抓（失敗時不打擾）
+  if(book().trades.length&&Date.now()-(S.divSync||0)>3*3600*1000)setTimeout(()=>syncDividends(false),1800);
   // 回到前景時（切換 App／螢幕解鎖）自動更新，最多每 60 秒一次
   document.addEventListener('visibilitychange',()=>{
     if(document.visibilityState==='visible'&&book().trades.length&&Date.now()-lastQuoteAt>60000)fetchQuotes(false);
@@ -1225,7 +1338,7 @@ function back(){
   if(TAB!=='overview'){TAB='overview';render();return true;}
   return false;
 }
-window.__app={get S(){return S;},compute,init,render,back,parseRealtime,set TAB(v){TAB=v;},get TAB(){return TAB;}};
+window.__app={get S(){return S;},compute,init,render,back,parseRealtime,syncDividends,mergeDivEvents,rocDate,parsePs,set TAB(v){TAB=v;},get TAB(){return TAB;}};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>

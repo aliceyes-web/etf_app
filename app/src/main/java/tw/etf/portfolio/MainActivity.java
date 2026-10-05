@@ -54,6 +54,7 @@ public class MainActivity extends Activity {
     private static final Set<String> ALLOWED_HOSTS = new HashSet<>(Arrays.asList(
             "mis.twse.com.tw",
             "openapi.twse.com.tw",
+            "www.twse.com.tw",
             "www.tpex.org.tw"));
 
     private WebView webView;
