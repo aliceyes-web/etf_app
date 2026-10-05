@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>台股 ETF 投資組合</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="theme-color" content="#1e3a5f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ETF 組合">
+<meta name="description" content="台股 ETF 投資組合追蹤：持倉損益、交易記錄、配息與報價，全部存在本機。">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,{%22name%22:%20%22台股%20ETF%20投資組合%22,%20%22short_name%22:%20%22ETF%20組合%22,%20%22start_url%22:%20%22.%22,%20%22scope%22:%20%22.%22,%20%22display%22:%20%22standalone%22,%20%22orientation%22:%20%22portrait%22,%20%22background_color%22:%20%22%23eef2f7%22,%20%22theme_color%22:%20%22%231e3a5f%22,%20%22lang%22:%20%22zh-Hant%22,%20%22icons%22:%20[{%22src%22:%20%22data:image/png;base64,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%22,%20%22sizes%22:%20%22192x192%22,%20%22type%22:%20%22image/png%22,%20%22purpose%22:%20%22any%20maskable%22},%20{%22src%22:%20%22data:image/png;base64,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%22,%20%22sizes%22:%20%22512x512%22,%20%22type%22:%20%22image/png%22,%20%22purpose%22:%20%22any%20maskable%22}]}">
+</head>
+<body>
+<style>
+:root{
+  --bg:#eef2f7; --card:#ffffff; --card2:#f6f8fb; --text:#111827; --muted:#6b7280; --line:#e5e7eb;
+  --navy:#1e3a5f; --navy-soft:#2c4f7c; --green:#0f6d4d; --green-soft:#178a63;
+  --accent:#2f6fe4; --accent-soft:#e8f0fe;
+  --up:#d92d20; --down:#0f9d58; --chip:#eef1f6; --chipText:#4b5563;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
+  --radius:16px; --tabh:60px; --toph:52px;
+}
+:root[data-theme="dark"]{
+  --bg:#0e1116; --card:#171b22; --card2:#1e232c; --text:#e8eaed; --muted:#9aa3af; --line:#272d37;
+  --navy:#16283f; --navy-soft:#24405f; --green:#0b5238; --green-soft:#12734f;
+  --accent:#4b86f0; --accent-soft:#1b2740;
+  --up:#ff5a4d; --down:#22c07a; --chip:#232935; --chipText:#c2c8d2;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:system-ui,-apple-system,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:15px; line-height:1.45; overscroll-behavior-y:none;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+input,select,textarea{
+  background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:10px 12px; width:100%;
+}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.hide{display:none !important}
+.num{font-variant-numeric:tabular-nums}
+.up{color:var(--up)} .down{color:var(--down)} .muted{color:var(--muted)}
+
+/* ---------- chrome ---------- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:calc(var(--toph) + env(safe-area-inset-top));
+  padding:env(safe-area-inset-top) 14px 0;background:var(--card);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;z-index:40;
+}
+.acct{display:flex;align-items:center;gap:6px;font-size:20px;font-weight:700}
+.acct .caret{font-size:12px;color:var(--muted)}
+.avatar{
+  width:36px;height:36px;border-radius:50%;background:var(--chip);
+  display:flex;align-items:center;justify-content:center;font-size:20px
+}
+main{
+  padding:calc(var(--toph) + env(safe-area-inset-top) + 10px) 12px
+          calc(var(--tabh) + env(safe-area-inset-bottom) + 18px);
+  max-width:620px;margin:0 auto;
+}
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);
+  border-top:1px solid var(--line);display:flex;
+  height:calc(var(--tabh) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);
+}
+.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  font-size:11px;color:var(--muted)}
+.tabbar button .ic{font-size:21px;line-height:1}
+.tabbar button.on{color:var(--accent);font-weight:700}
+
+/* ---------- blocks ---------- */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:12px}
+.sec-title{font-size:19px;font-weight:800;margin:16px 4px 10px;display:flex;align-items:center;gap:8px}
+.hero{border-radius:20px;padding:16px;margin-bottom:14px;color:#fff}
+.hero.navy{background:var(--navy)} .hero.green{background:var(--green)}
+.hero .row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0}
+.hero .k{color:rgba(255,255,255,.72);font-size:14px}
+.hero .v{font-size:17px;font-weight:700}
+.hero .big{font-size:30px;font-weight:800;letter-spacing:-.5px}
+.hero hr{border:none;border-top:1px solid rgba(255,255,255,.18);margin:10px 0}
+.hero-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;
+  color:rgba(255,255,255,.85);font-size:15px;font-weight:600}
+.hero-head .tools{display:flex;gap:12px;align-items:center;font-size:14px}
+.hero-head .tools button{color:rgba(255,255,255,.9)}
+
+.segs{display:flex;gap:6px;background:rgba(255,255,255,.12);padding:4px;border-radius:999px}
+.segs.light{background:var(--chip)}
+.segs button{flex:1;padding:7px 4px;border-radius:999px;font-size:14px;font-weight:600;color:rgba(255,255,255,.8)}
+.segs.light button{color:var(--chipText)}
+.segs button.on{background:#fff;color:#111827}
+.segs.light button.on{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+
+.monthnav{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0 2px}
+.monthnav button{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff}
+.monthnav .lbl{font-size:19px;font-weight:700}
+
+.chips{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0 12px}
+.chip{padding:8px 14px;border-radius:999px;background:var(--chip);color:var(--chipText);font-size:14px;font-weight:600}
+.chip.on{background:var(--accent);color:#fff}
+.chip.plain.on{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+
+.item{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:10px}
+.item .hl{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.code{font-size:21px;font-weight:800;letter-spacing:.5px}
+.nm{color:var(--muted);font-size:14px}
+.kv{display:flex;justify-content:space-between;padding:4px 0;font-size:14px}
+.kv .k{color:var(--muted)}
+.divider{border-top:1px solid var(--line);margin:10px 0}
+.badge{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15px;flex:0 0 auto}
+.badge.buy{background:rgba(15,157,88,.14);color:var(--down)}
+.badge.sell{background:rgba(217,45,32,.14);color:var(--up)}
+.tag{display:inline-block;padding:2px 8px;border-radius:8px;font-size:12px;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tag.ok{background:rgba(15,157,88,.14);color:var(--down)}
+.empty{text-align:center;color:var(--muted);padding:22px 10px}
+
+.btn{padding:12px 16px;border-radius:12px;font-weight:700;font-size:16px;background:var(--chip);color:var(--text);text-align:center}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.green{background:var(--green-soft);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--line)}
+.btn.sm{padding:8px 12px;font-size:14px;border-radius:10px}
+.btn.block{display:block;width:100%}
+.btn2{display:grid;grid-template-columns:1fr auto;gap:10px}
+
+.fab{position:fixed;right:16px;bottom:calc(var(--tabh) + env(safe-area-inset-bottom) + 16px);
+  width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-size:30px;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(47,111,228,.4);z-index:35}
+.fab.green{background:var(--green);box-shadow:0 6px 20px rgba(15,109,77,.4)}
+
+.list-row{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid var(--line)}
+.list-row:last-child{border-bottom:none}
+.list-row .ic{font-size:20px;width:26px;text-align:center}
+.list-row .gt{margin-left:auto;color:var(--muted)}
+.group{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:14px}
+
+/* analysis */
+.acard{border-radius:20px;padding:16px 150px 18px 16px;margin-bottom:12px;position:relative;overflow:hidden;color:#fff;min-height:150px}
+.acard .pct{font-size:42px;font-weight:800;letter-spacing:-1px;margin:6px 0 4px}
+.acard .sub{font-size:14px;opacity:.85}
+.acard .pill{position:absolute;right:14px;top:14px;background:rgba(255,255,255,.22);padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px}
+.acard .bars{position:absolute;right:16px;bottom:0;display:flex;align-items:flex-end;gap:8px;height:96px}
+.acard .bars i{display:block;width:40px;border-radius:4px 4px 0 0;background:rgba(255,255,255,.45)}
+.acard.red{background:#8e1d33} .acard.red .pct{color:#ff6b6b}
+.acard.indigo{background:#3b3f9e} .acard.indigo .pct{color:#ff6b6b}
+.acard.plain{background:var(--card);color:var(--text)}
+.acard.plain .pct{color:var(--up)} .acard.plain .pill{background:var(--chip);color:var(--text)}
+.acard.plain .bars i{background:var(--line)}
+
+/* sheet / modal */
+.mask{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--card);width:100%;max-width:620px;border-radius:20px 20px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));
+  max-height:92vh;overflow:auto;animation:up .18s ease-out}
+@keyframes up{from{transform:translateY(18px);opacity:.6}to{transform:none;opacity:1}}
+.sheet h3{margin:2px 0 14px;font-size:19px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px;font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg-inline{display:flex;gap:8px}
+.seg-inline button{flex:1;padding:11px;border-radius:12px;background:var(--chip);font-weight:700;color:var(--chipText)}
+.seg-inline button.on{background:var(--accent);color:#fff}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--tabh) + 30px);
+  background:rgba(17,24,39,.94);color:#fff;padding:11px 18px;border-radius:999px;z-index:90;font-size:14px;max-width:90%}
+.spin{width:16px;height:16px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;
+  display:inline-block;animation:sp .8s linear infinite;vertical-align:-3px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.swipe{display:flex;gap:8px;margin-top:10px}
+</style>
+
+<header class="topbar">
+  <button class="acct" id="acctBtn"><span id="acctName">帳戶</span><span class="caret">▼</span></button>
+  <button class="avatar" id="avatarBtn">🐱</button>
+</header>
+
+<main id="view"></main>
+
+<button class="fab hide" id="fab">＋</button>
+
+<nav class="tabbar" id="tabbar">
+  <button data-tab="overview"><span class="ic">📊</span>總覽</button>
+  <button data-tab="trades"><span class="ic">📋</span>交易</button>
+  <button data-tab="divs"><span class="ic">💰</span>配息</button>
+  <button data-tab="analysis"><span class="ic">📈</span>分析</button>
+  <button data-tab="quotes"><span class="ic">🔍</span>報價</button>
+  <button data-tab="settings"><span class="ic">⚙️</span>設定</button>
+</nav>
+
+<div id="modalRoot"></div>
+
+<script>
+/* =========================================================
+   台股 ETF 投資組合追蹤 — 單檔 PWA
+   資料全部存在本機瀏覽器 (localStorage)，不會上傳任何地方
+   ========================================================= */
+(function(){
+'use strict';
+
+const KEY='twetf_v1';
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- 預設資料 ---------- */
+function blankBook(){return{trades:[],divs:[],events:[],prices:{},names:{},order:[]};}
+function defaultState(){
+  const id=uid();
+  return{
+    v:1, activeId:id, theme:'system', hide:false,
+    accounts:[{id,name:'我的帳戶',avatar:'🐱'}],
+    books:{[id]:blankBook()},
+    cfg:{feeRate:0.1425,feeDisc:1,feeMin:20,taxEtf:0.1,taxStk:0.3,proxy:''},
+    ui:{holdSort:'code',trPeriod:'month',trAnchor:todayStr().slice(0,7),trSort:'date',
+        dvPeriod:'month',dvAnchor:todayStr().slice(0,7)}
+  };
+}
+let S=defaultState();
+
+function load(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    if(raw){
+      const o=JSON.parse(raw);
+      S=Object.assign(defaultState(),o);
+      S.cfg=Object.assign(defaultState().cfg,o.cfg||{});
+      S.ui=Object.assign(defaultState().ui,o.ui||{});
+      if(!S.accounts||!S.accounts.length)S=defaultState();
+      if(!S.books[S.activeId])S.activeId=S.accounts[0].id;
+      S.accounts.forEach(a=>{if(!S.books[a.id])S.books[a.id]=blankBook();});
+      Object.values(S.books).forEach(b=>{
+        b.trades=b.trades||[];b.divs=b.divs||[];b.events=b.events||[];
+        b.prices=b.prices||{};b.names=b.names||{};b.order=b.order||[];
+      });
+    }
+  }catch(e){console.warn('load fail',e);}
+}
+let saveTimer=null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{
+    try{localStorage.setItem(KEY,JSON.stringify(S));}
+    catch(e){toast('儲存失敗：'+e.message);}
+  },60);
+}
+const book=()=>S.books[S.activeId];
+const acct=()=>S.accounts.find(a=>a.id===S.activeId)||S.accounts[0];
+
+/* ---------- 工具 ---------- */
+function todayStr(d){d=d||new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function nf(n,d){d=d==null?0:d;
+  return (Math.round((n||0)*Math.pow(10,d))/Math.pow(10,d)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function money(n,d){const v=S.hide?'****':nf(n,d||0);return 'NT$ '+v;}
+function signed(n,d){const s=n>0?'+':(n<0?'-':'');return s+nf(Math.abs(n),d||0);}
+function pct(n,d){d=d==null?2:d;if(!isFinite(n))return '—';return (n>0?'+':'')+nf(n,d)+'%';}
+function cls(n){return n>0?'up':(n<0?'down':'');}
+function isEtf(code){return /^00/.test(String(code));}
+function stockName(code){const b=book();return b.names[code]||'';}
+function setName(code,name){if(name){book().names[code]=name;}}
+
+/* 預設手續費／證交稅 */
+function calcFee(amount){
+  const c=S.cfg,f=Math.round(amount*(c.feeRate/100)*(c.feeDisc||1));
+  return Math.max(f, amount>0?Math.min(c.feeMin,f||c.feeMin):0);
+}
+function calcTax(code,amount){
+  const c=S.cfg;return Math.round(amount*((isEtf(code)?c.taxEtf:c.taxStk)/100));
+}
+
+/* ---------- 持倉計算 (FIFO) ---------- */
+function compute(){
+  const b=book();
+  const trades=b.trades.slice().sort((x,y)=>x.date<y.date?-1:x.date>y.date?1:(x.seq||0)-(y.seq||0));
+  const H={};   // code -> holding
+  const realizedRows=[];
+  for(const t of trades){
+    const c=t.code;
+    if(!H[c])H[c]={code:c,name:t.name||stockName(c),lots:[],shares:0,cost:0,realized:0,buyAmt:0,sellAmt:0,divTotal:0,divPerShare:0,div12:0,firstDate:t.date};
+    const h=H[c];
+    if(t.name)h.name=t.name;
+    const amt=t.shares*t.price;
+    if(t.type==='buy'){
+      h.lots.push({shares:t.shares,price:t.price,fee:t.fee||0,date:t.date});
+      h.shares+=t.shares; h.cost+=amt+(t.fee||0); h.buyAmt+=amt;
+    }else{
+      let left=t.shares, costOut=0;
+      while(left>0&&h.lots.length){
+        const lot=h.lots[0], take=Math.min(left,lot.shares);
+        const unit=lot.price+(lot.fee||0)/lot.shares;
+        costOut+=take*unit; lot.shares-=take; left-=take;
+        if(lot.shares<=0.0000001)h.lots.shift();
+      }
+      const proceeds=amt-(t.fee||0)-(t.tax||0);
+      const pl=proceeds-costOut;
+      h.realized+=pl; h.shares-=t.shares; h.cost=Math.max(0,h.cost-costOut); h.sellAmt+=amt;
+      realizedRows.push({code:c,date:t.date,pl:pl});
+    }
+  }
+  // 配息
+  const oneYearAgo=new Date();oneYearAgo.setFullYear(oneYearAgo.getFullYear()-1);
+  const y1=todayStr(oneYearAgo);
+  for(const d of b.divs){
+    const c=d.code;
+    if(!H[c])H[c]={code:c,name:d.name||stockName(c),lots:[],shares:0,cost:0,realized:0,buyAmt:0,sellAmt:0,divTotal:0,divPerShare:0,div12:0,firstDate:d.date};
+    const h=H[c]; const amt=divAmount(d);
+    h.divTotal+=amt;
+    if((d.date||'')>=y1){h.div12+=amt;h.divPerShare+=(+d.perShare||0);}
+  }
+  // 現價與市值
+  const list=[];
+  for(const c in H){
+    const h=H[c];
+    const p=b.prices[c]||{};
+    h.price=(p.price!=null?+p.price:null);
+    h.prevClose=(p.prev!=null?+p.prev:null);
+    h.priceTime=p.time||''; h.priceSrc=p.src||'';
+    h.avg=h.shares>0?h.cost/h.shares:0;
+    h.noPrice=h.shares>0&&h.price==null;
+    h.value=h.shares>0?(h.price!=null?h.shares*h.price:h.cost):0;  // 未設定價格時以成本計，避免市值失真
+    h.unreal=h.shares>0&&h.price!=null?h.value-h.cost:0;
+    h.unrealPct=h.cost>0&&h.shares>0&&h.price!=null?h.unreal/h.cost*100:0;
+    h.dayChg=(h.price!=null&&h.prevClose!=null)?(h.price-h.prevClose):null;
+    h.dayPl=h.dayChg!=null?h.dayChg*h.shares:null;
+    h.yieldPct=(h.price&&h.divPerShare)?(h.divPerShare/h.price*100):0;
+    h.total=h.unreal+h.realized+h.divTotal;
+    list.push(h);
+  }
+  const held=list.filter(h=>h.shares>0.0000001);
+  const sum={
+    value:held.reduce((a,h)=>a+h.value,0),
+    cost:held.reduce((a,h)=>a+h.cost,0),
+    unreal:held.reduce((a,h)=>a+h.unreal,0),
+    realized:list.reduce((a,h)=>a+h.realized,0),
+    div:list.reduce((a,h)=>a+h.divTotal,0),
+    dayPl:held.reduce((a,h)=>a+(h.dayPl||0),0),
+    invested:list.reduce((a,h)=>a+h.buyAmt,0)
+  };
+  sum.unrealPct=sum.cost>0?sum.unreal/sum.cost*100:0;
+  sum.total=sum.unreal+sum.realized+sum.div;
+  return {list,held,sum,realizedRows};
+}
+function divAmount(d){
+  if(d.amount!=null&&d.amount!=='')return +d.amount;
+  return Math.round((+d.perShare||0)*(+d.shares||0)-(+d.tax||0));
+}
+/* 某日期時的持股（用於除息事件推算） */
+function sharesAt(code,date){
+  const b=book();let s=0;
+  b.trades.filter(t=>t.code===code&&t.date<=date).forEach(t=>{s+=t.type==='buy'?t.shares:-t.shares;});
+  return s;
+}
+
+/* ---------- 期間 ---------- */
+function periodRange(mode,anchor){
+  // anchor: 'YYYY-MM'
+  const [y,m]=anchor.split('-').map(Number);
+  if(mode==='month')return{from:anchor+'-01',to:anchor+'-31',label:y+' 年 '+m+' 月'};
+  if(mode==='quarter'){const q=Math.floor((m-1)/3),s=q*3+1;
+    return{from:y+'-'+String(s).padStart(2,'0')+'-01',to:y+'-'+String(s+2).padStart(2,'0')+'-31',label:y+' 年 Q'+(q+1)};}
+  if(mode==='year')return{from:y+'-01-01',to:y+'-12-31',label:y+' 年'};
+  return{from:'0000-01-01',to:'9999-12-31',label:'全部期間'};
+}
+function shiftAnchor(anchor,mode,dir){
+  let [y,m]=anchor.split('-').map(Number);
+  if(mode==='month'){m+=dir;if(m>12){m=1;y++;}if(m<1){m=12;y--;}}
+  else if(mode==='quarter'){m+=dir*3;while(m>12){m-=12;y++;}while(m<1){m+=12;y--;}}
+  else if(mode==='year'){y+=dir;}
+  else return anchor;
+  return y+'-'+String(m).padStart(2,'0');
+}
+function inRange(date,r){return date>=r.from&&date<=r.to;}
+
+/* ---------- UI helpers ---------- */
+function toast(msg,ms){
+  const old=$('.toast');if(old)old.remove();
+  const el=document.createElement('div');el.className='toast';el.textContent=msg;
+  document.body.appendChild(el);setTimeout(()=>el.remove(),ms||2200);
+}
+function closeSheet(){const m=$('#modalRoot');m.innerHTML='';}
+function sheet(title,bodyHtml,onMount){
+  const m=$('#modalRoot');
+  m.innerHTML='<div class="mask" data-close="1"><div class="sheet"><h3>'+esc(title)+'</h3>'+bodyHtml+'</div></div>';
+  $('.mask',m).addEventListener('click',e=>{if(e.target.dataset.close)closeSheet();});
+  if(onMount)onMount($('.sheet',m));
+}
+function confirmSheet(title,msg,onYes,yesLabel){
+  sheet(title,'<p class="muted" style="margin:0 0 16px">'+esc(msg)+'</p>'+
+    '<div class="btn2"><button class="btn primary" id="cfY">'+esc(yesLabel||'確定')+'</button>'+
+    '<button class="btn" id="cfN">取消</button></div>',el=>{
+      $('#cfY',el).onclick=()=>{closeSheet();onYes();};
+      $('#cfN',el).onclick=closeSheet;
+    });
+}
+function applyTheme(){
+  const t=S.theme==='system'
+    ?(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')
+    :S.theme;
+  document.documentElement.setAttribute('data-theme',t);
+  const mt=document.querySelector('meta[name="theme-color"]');
+  if(mt)mt.setAttribute('content',t==='dark'?'#0e1116':'#eef2f7');
+}
+if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(S.theme==='system')applyTheme();});
+
+/* =================== 總覽 =================== */
+function viewOverview(){
+  const {held,sum}=compute();
+  const s=S.ui.holdSort;
+  const sorted=held.slice().sort((a,b)=>{
+    if(s==='code')return a.code<b.code?-1:1;
+    if(s==='pl')return b.unrealPct-a.unrealPct;
+    if(s==='value')return b.value-a.value;
+    if(s==='yield')return b.yieldPct-a.yieldPct;
+    const o=book().order;const ia=o.indexOf(a.code),ib=o.indexOf(b.code);
+    return (ia<0?999:ia)-(ib<0?999:ib);
+  });
+  let h='<div class="hero navy">'+
+    '<div class="hero-head"><span>投資組合總覽</span><span class="tools">'+
+      '<button id="eyeBtn">'+(S.hide?'🙈':'👁')+'</button>'+
+      '<button id="refBtn">↻ 重新整理</button></span></div>'+
+    '<div class="row"><span class="k">市值</span><span class="big num">'+money(sum.value)+'</span></div>'+
+    '<div class="row"><span class="k">成本</span><span class="big num">'+money(sum.cost)+'</span></div><hr>'+
+    row('未實現損益',(S.hide?'****':signed(sum.unreal)+' ('+pct(sum.unrealPct)+')'),cls(sum.unreal))+
+    row('已實現損益',(S.hide?'****':signed(sum.realized)),cls(sum.realized))+
+    row('股利收入',(S.hide?'****':signed(sum.div)),cls(sum.div))+
+    row('總損益',(S.hide?'****':signed(sum.total)),cls(sum.total))+
+  '</div>';
+
+  h+='<div class="sec-title">持倉明細</div>';
+  h+='<div class="chips" id="sortChips">'+
+    [['custom','自訂'],['code','股號'],['pl','損益%'],['value','市值'],['yield','殖利率']]
+      .map(([k,l])=>'<button class="chip plain '+(s===k?'on':'')+'" data-s="'+k+'">'+l+'</button>').join('')+
+    '</div>';
+
+  if(!sorted.length){
+    h+='<div class="card empty">尚無持倉，點右下角 ＋ 新增一筆買進交易</div>';
+  }else{
+    h+=sorted.map(x=>{
+      const priceTxt=x.price!=null?nf(x.price,2):'—';
+      return '<div class="item" data-code="'+esc(x.code)+'">'+
+        '<div class="hl"><div><div class="code">'+esc(x.code)+'</div><div class="nm">'+esc(x.name||'')+'</div></div>'+
+        '<div style="text-align:right"><div class="code num">$'+priceTxt+'</div>'+
+        '<div class="nm num">'+nf(x.shares)+' 股</div></div></div>'+
+        '<div class="divider"></div>'+
+        kv('市值',money(x.value))+
+        kv('均成本','NT$ '+nf(x.avg,2))+
+        kv('未實現損益',x.noPrice?'<span class="muted">尚未設定現價</span>'
+            :'<span class="'+cls(x.unreal)+'">'+(S.hide?'****':signed(x.unreal)+' ('+pct(x.unrealPct)+')')+'</span>')+
+        kv('近一年殖利率',x.yieldPct?nf(x.yieldPct,2)+'%':'—')+
+      '</div>';
+    }).join('');
+  }
+  setView(h,'trade');
+  $('#eyeBtn').onclick=()=>{S.hide=!S.hide;save();render();};
+  $('#refBtn').onclick=()=>fetchQuotes(true);
+  $$('#sortChips .chip').forEach(b=>b.onclick=()=>{S.ui.holdSort=b.dataset.s;save();render();});
+  $$('#view .item[data-code]').forEach(el=>el.onclick=()=>holdingSheet(el.dataset.code));
+}
+function row(k,v,c){return '<div class="row"><span class="k">'+k+'</span><span class="v num '+(c||'')+'">'+v+'</span></div>';}
+function kv(k,v){return '<div class="kv"><span class="k">'+k+'</span><span class="num">'+v+'</span></div>';}
+
+function holdingSheet(code){
+  const {list}=compute();
+  const x=list.find(i=>i.code===code);if(!x)return;
+  const b=book();
+  const trs=b.trades.filter(t=>t.code===code).sort((a,c)=>a.date<c.date?1:-1).slice(0,8);
+  const dvs=b.divs.filter(d=>d.code===code).sort((a,c)=>a.date<c.date?1:-1).slice(0,6);
+  let h='<div class="card" style="box-shadow:none;background:var(--card2)">'+
+    kv('持股',nf(x.shares)+' 股')+kv('均成本','NT$ '+nf(x.avg,2))+
+    kv('現價',x.price!=null?'NT$ '+nf(x.price,2)+(x.priceTime?' <span class="muted" style="font-weight:400">'+esc(x.priceTime)+'</span>':''):'未設定')+
+    kv('市值',money(x.value))+
+    kv('未實現損益','<span class="'+cls(x.unreal)+'">'+signed(x.unreal)+' ('+pct(x.unrealPct)+')</span>')+
+    kv('已實現損益','<span class="'+cls(x.realized)+'">'+signed(x.realized)+'</span>')+
+    kv('累計配息','<span class="up">'+signed(x.divTotal)+'</span>')+
+    kv('總損益','<span class="'+cls(x.total)+'">'+signed(x.total)+'</span>')+'</div>';
+  h+='<div class="field"><label>手動設定現價</label><div class="btn2">'+
+     '<input id="mp" type="number" step="0.01" inputmode="decimal" value="'+(x.price!=null?x.price:'')+'">'+
+     '<button class="btn primary" id="mpSave">儲存</button></div></div>';
+  if(trs.length){h+='<div class="sec-title" style="font-size:16px">近期交易</div>'+
+    trs.map(t=>'<div class="kv"><span>'+(t.type==='buy'?'買':'賣')+' '+esc(t.date)+'</span><span class="num">'+nf(t.shares)+' 股 @'+nf(t.price,2)+'</span></div>').join('');}
+  if(dvs.length){h+='<div class="sec-title" style="font-size:16px">近期配息</div>'+
+    dvs.map(d=>'<div class="kv"><span>'+esc(d.date)+'</span><span class="num">'+money(divAmount(d))+'</span></div>').join('');}
+  h+='<div class="swipe" style="margin-top:14px">'+
+     '<button class="btn primary" style="flex:1" id="hAddTr">新增交易</button>'+
+     '<button class="btn green" style="flex:1" id="hAddDv">新增配息</button></div>';
+  sheet(esc(code)+'　'+esc(x.name||''),h,el=>{
+    $('#mpSave',el).onclick=()=>{
+      const v=parseFloat($('#mp',el).value);
+      if(isFinite(v)){book().prices[code]=Object.assign({},book().prices[code],{price:v,src:'手動',time:'手動 '+todayStr()});save();closeSheet();render();toast('已更新價格');}
+    };
+    $('#hAddTr',el).onclick=()=>{closeSheet();tradeForm(null,code);};
+    $('#hAddDv',el).onclick=()=>{closeSheet();divForm(null,code);};
+  });
+}
+
+/* =================== 交易 =================== */
+function viewTrades(){
+  const b=book(),u=S.ui;
+  const r=periodRange(u.trPeriod,u.trAnchor);
+  const inP=b.trades.filter(t=>inRange(t.date,r));
+  const buy=inP.filter(t=>t.type==='buy').reduce((a,t)=>a+t.shares*t.price,0);
+  const sell=inP.filter(t=>t.type==='sell').reduce((a,t)=>a+t.shares*t.price,0);
+  let h='<div class="hero navy">'+segs('trP',u.trPeriod)+
+    (u.trPeriod==='all'?'<div style="text-align:center;margin:12px 0 2px;font-size:19px;font-weight:700">全部期間</div>'
+      :'<div class="monthnav"><button data-nav="-1">‹</button><span class="lbl">'+r.label+'</span><button data-nav="1">›</button></div>')+
+    '<div style="display:flex;text-align:center;margin-top:10px">'+
+      '<div style="flex:1"><div class="k">買入金額</div><div class="v num" style="font-size:20px;color:#7ee2b8">'+(inP.length?nf(buy):'—––')+'</div></div>'+
+      '<div style="flex:1"><div class="k">賣出金額</div><div class="v num" style="font-size:20px;color:#ffb0a8">'+(inP.length?nf(sell):'—––')+'</div></div>'+
+    '</div>'+
+    (inP.length?'':'<div style="text-align:center;margin-top:10px;color:rgba(255,255,255,.75)">本期無交易記錄</div>')+
+  '</div>';
+
+  h+='<div class="chips" style="justify-content:flex-end"><span class="muted" style="margin-right:auto">排序</span>'+
+     '<button class="chip '+(u.trSort==='date'?'on':'')+'" data-ts="date">日期 ↓</button>'+
+     '<button class="chip '+(u.trSort==='amt'?'on':'')+'" data-ts="amt">金額</button></div>';
+
+  let rows=(u.trPeriod==='all'?b.trades:inP).slice();
+  rows.sort((x,y)=>u.trSort==='amt'?(y.shares*y.price-x.shares*x.price):(x.date<y.date?1:x.date>y.date?-1:0));
+  const totalCnt=b.trades.length;
+  h+=(!rows.length&&u.trPeriod!=='all'&&totalCnt)
+     ?'<div class="card empty">本期沒有交易記錄<br><button class="btn sm primary" id="seeAll" style="margin-top:10px">查看全部 '+totalCnt+' 筆</button></div>'
+     :rows.length?rows.map(t=>{
+      const amt=t.shares*t.price;
+      return '<div class="item" data-tr="'+t.id+'"><div style="display:flex;gap:12px;align-items:center">'+
+      '<div class="badge '+(t.type==='buy'?'buy':'sell')+'">'+(t.type==='buy'?'買':'賣')+'</div>'+
+      '<div style="flex:1;min-width:0"><div class="code" style="font-size:19px">'+esc(t.code)+'</div>'+
+      '<div class="nm">'+esc(t.name||stockName(t.code))+' ・ '+esc(t.date)+'</div></div>'+
+      '<div style="text-align:right"><div class="num" style="font-weight:700">'+nf(t.shares)+' 股</div>'+
+      '<div class="nm num">@'+nf(t.price,2)+'</div>'+
+      '<div class="nm num">'+nf(amt)+'</div></div></div></div>';
+    }).join('')
+   :'<div class="card empty">本期沒有交易記錄</div>';
+
+  setView(h,'trade');
+  $$('#view [data-nav]').forEach(x=>x.onclick=()=>{S.ui.trAnchor=shiftAnchor(u.trAnchor,u.trPeriod,+x.dataset.nav);save();render();});
+  $$('#view [data-p]').forEach(x=>x.onclick=()=>{S.ui.trPeriod=x.dataset.p;save();render();});
+  $$('#view [data-ts]').forEach(x=>x.onclick=()=>{S.ui.trSort=x.dataset.ts;save();render();});
+  $$('#view [data-tr]').forEach(el=>el.onclick=()=>{
+    const t=book().trades.find(z=>z.id===el.dataset.tr);if(t)tradeForm(t);
+  });
+  if($('#seeAll'))$('#seeAll').onclick=()=>{S.ui.trPeriod='all';save();render();};
+}
+function segs(kind,cur){
+  return '<div class="segs">'+[['month','本月'],['quarter','本季'],['year','本年'],['all','全部']]
+    .map(([k,l])=>'<button data-p="'+k+'" class="'+(cur===k?'on':'')+'">'+l+'</button>').join('')+'</div>';
+}
+
+/* =================== 配息 =================== */
+function viewDivs(){
+  const b=book(),u=S.ui,today=todayStr();
+  const r=periodRange(u.dvPeriod,u.dvAnchor);
+
+  // 待確認：已除息但尚未入帳
+  const pend=b.events.filter(e=>e.status==='pending'&&e.exDate<=today)
+                     .sort((a,c)=>a.exDate<c.exDate?1:-1);
+  const soon=b.events.filter(e=>e.status==='pending'&&e.exDate>today)
+                     .sort((a,c)=>a.exDate<c.exDate?-1:1);
+
+  let h='<div class="sec-title">🔔 待確認配息</div>';
+  h+=pend.length?pend.map(e=>{
+      const sh=e.shares!=null?e.shares:sharesAt(e.code,e.exDate);
+      const amt=Math.round((+e.perShare||0)*sh);
+      return '<div class="item" style="border-left:4px solid #f59e0b">'+
+        '<div class="hl"><div><span class="code">'+esc(e.code)+'</span> <span class="nm">'+esc(e.name||stockName(e.code))+'</span></div>'+
+        '<div class="code" style="color:var(--green-soft)">'+money(amt)+'</div></div>'+
+        '<div class="nm" style="margin:6px 0 12px">已於 '+esc(e.exDate)+' 除息｜每股 '+nf(e.perShare,3)+' 元 '+
+        '<span class="tag ok">✓ 已公告</span> × 當時持股 '+nf(sh)+' 股</div>'+
+        '<div class="btn2"><button class="btn green" data-add="'+e.id+'">✓ 自動新增</button>'+
+        '<button class="btn" data-ign="'+e.id+'">✕ 忽略</button></div></div>';
+    }).join('')
+   :'<div class="card empty">目前沒有待確認的配息</div>';
+
+  h+='<div class="sec-title">📅 即將配息</div>';
+  h+=soon.length?soon.map(e=>{
+      const d=Math.ceil((new Date(e.exDate)-new Date(today))/86400000);
+      const sh=sharesAt(e.code,today);
+      return '<div class="item"><div class="hl"><div><span class="code">'+esc(e.code)+'</span> '+
+        '<span class="nm">'+esc(e.name||stockName(e.code))+'</span></div>'+
+        '<div class="tag">'+d+' 天後除息</div></div>'+
+        '<div class="nm" style="margin-top:6px">'+esc(e.exDate)+' 除息｜每股 '+nf(e.perShare,3)+' 元 × 目前持股 '+nf(sh)+' 股 ≈ '+money(Math.round(e.perShare*sh))+'</div>'+
+        '<div class="swipe"><button class="btn sm ghost" data-ev="'+e.id+'">編輯</button></div></div>';
+    }).join('')
+   :'<div class="card empty">目前無已公告的除息事件</div>';
+
+  const inP=b.divs.filter(d=>inRange(d.date,r)).sort((a,c)=>a.date<c.date?1:-1);
+  const tot=inP.reduce((a,d)=>a+divAmount(d),0);
+  h+='<div class="hero green" style="margin-top:14px">'+segs('dv',u.dvPeriod)+
+    (u.dvPeriod==='all'?'<div style="text-align:center;margin:12px 0 2px;font-size:19px;font-weight:700">全部期間</div>'
+      :'<div class="monthnav"><button data-nav="-1">‹</button><span class="lbl">'+r.label+'</span><button data-nav="1">›</button></div>')+
+    '<div style="text-align:center;margin-top:8px"><div class="k">股利收入總計</div>'+
+    '<div class="big num" style="font-size:38px">'+money(tot)+'</div>'+
+    (inP.length?'':'<div style="color:rgba(255,255,255,.75);margin-top:4px">本期無配息記錄</div>')+'</div></div>';
+
+  if(inP.length){
+    h+=inP.map(d=>'<div class="item" data-dv="'+d.id+'"><div class="hl">'+
+      '<div><span class="code">'+esc(d.code)+'</span> <span class="nm">'+esc(d.name||stockName(d.code))+'</span>'+
+      '<div class="nm">'+esc(d.date)+'｜每股 '+nf(d.perShare,3)+' × '+nf(d.shares)+' 股</div></div>'+
+      '<div class="code" style="color:var(--green-soft)">'+money(divAmount(d))+'</div></div></div>').join('');
+  }
+  if(!inP.length&&u.dvPeriod!=='all'&&b.divs.length)
+    h+='<div class="card empty"><button class="btn sm primary" id="dvAll">查看全部 '+b.divs.length+' 筆配息</button></div>';
+  h+='<div class="swipe" style="margin-bottom:10px"><button class="btn ghost block" id="addEv">＋ 新增除息公告</button></div>';
+
+  setView(h,'div');
+  $$('#view [data-nav]').forEach(x=>x.onclick=()=>{S.ui.dvAnchor=shiftAnchor(u.dvAnchor,u.dvPeriod,+x.dataset.nav);save();render();});
+  $$('#view [data-p]').forEach(x=>x.onclick=()=>{S.ui.dvPeriod=x.dataset.p;save();render();});
+  $$('#view [data-add]').forEach(x=>x.onclick=()=>{
+    const e=book().events.find(z=>z.id===x.dataset.add);if(!e)return;
+    const sh=e.shares!=null?e.shares:sharesAt(e.code,e.exDate);
+    book().divs.push({id:uid(),code:e.code,name:e.name||stockName(e.code),date:e.payDate||e.exDate,
+      perShare:+e.perShare,shares:sh,tax:0,amount:Math.round((+e.perShare||0)*sh)});
+    e.status='added';save();render();toast('已新增配息記錄');
+  });
+  $$('#view [data-ign]').forEach(x=>x.onclick=()=>{
+    const e=book().events.find(z=>z.id===x.dataset.ign);if(e){e.status='ignored';save();render();}
+  });
+  $$('#view [data-ev]').forEach(x=>x.onclick=()=>eventForm(book().events.find(z=>z.id===x.dataset.ev)));
+  $$('#view [data-dv]').forEach(el=>el.onclick=()=>divForm(book().divs.find(z=>z.id===el.dataset.dv)));
+  if($('#dvAll'))$('#dvAll').onclick=()=>{S.ui.dvPeriod='all';save();render();};
+  $('#addEv').onclick=()=>eventForm();
+}
+
+/* =================== 分析 =================== */
+function analyseDividends(){
+  const b=book(),today=new Date(),y=today.getFullYear();
+  const mmdd=todayStr().slice(4);
+  const ytd=b.divs.filter(d=>d.date>=y+'-01-01'&&d.date<=todayStr());
+  const ly =b.divs.filter(d=>d.date>=(y-1)+'-01-01'&&d.date<=(y-1)+mmdd);
+  const sum=a=>a.reduce((x,d)=>x+divAmount(d),0);
+  const per=arr=>{const m={};arr.forEach(d=>{const c=d.code;m[c]=m[c]||{ps:0,sh:0,amt:0};
+    m[c].ps+=(+d.perShare||0);m[c].sh=Math.max(m[c].sh,+d.shares||0);m[c].amt+=divAmount(d);});return m;};
+  const A=per(ytd),B=per(ly);
+  let base=0,cf=0;
+  Object.keys(B).forEach(c=>{base+=B[c].ps*B[c].sh;cf+=((A[c]&&A[c].ps)||0)*B[c].sh;});
+  const ytdT=sum(ytd),lyT=sum(ly);
+  return{ytdT,lyT,
+    yoy:lyT>0?(ytdT/lyT-1)*100:null,
+    psGrowth:base>0?(cf/base-1)*100:null,
+    addGrowth:cf>0?(ytdT/cf-1)*100:null};
+}
+function viewAnalysis(){
+  const {sum}=compute(),D=analyseDividends();
+  const basis=sum.invested||sum.cost;
+  const totalPct=basis>0?sum.total/basis*100:0;
+  const divPct=basis>0?sum.div/basis*100:0;
+  const capPct=basis>0?(sum.unreal+sum.realized)/basis*100:0;
+  const h1=Math.max(6,Math.min(88,Math.abs(capPct)));
+  const h2=Math.max(6,Math.min(88,Math.abs(divPct)));
+
+  let h='<div class="acard red"><button class="pill" data-go="rt">拆解 →</button>'+
+    '<div>累計總報酬</div><div class="pct">'+pct(totalPct,0)+'</div>'+
+    '<div class="sub">配息 '+pct(divPct,0)+' ・ 價差 '+pct(capPct,0)+'</div>'+
+    '<div class="sub">投入成本 '+money(basis)+'</div>'+
+    '<div class="bars"><i style="height:'+h1+'%"></i><i style="height:'+h2+'%;opacity:.6"></i></div></div>';
+
+  h+='<div class="acard indigo"><button class="pill" data-go="yoy">同期 →</button>'+
+    '<div style="max-width:60%">今年至今配息比去年同期</div>'+
+    (D.yoy==null?'<div class="pct" style="font-size:24px;color:rgba(255,255,255,.75)">尚無去年資料</div>':'<div class="pct">'+pct(D.yoy,0)+'</div>')+
+    '<div class="sub">去年同期 '+money(D.lyT)+'</div>'+
+    '<div class="sub">本年至今 '+money(D.ytdT)+'</div>'+
+    '<div class="bars"><i style="height:'+(D.ytdT?Math.max(10,Math.min(80,D.lyT/Math.max(D.ytdT,1)*70)):10)+'%"></i>'+
+    '<i style="height:80%;opacity:.7"></i></div></div>';
+
+  h+='<div class="acard plain"><button class="pill" data-go="ps">成長 →</button>'+
+    '<div>每股配息成長</div>'+
+    (D.psGrowth==null?'<div class="pct" style="font-size:24px;color:var(--muted)">資料不足</div>':'<div class="pct">'+pct(D.psGrowth,0)+'</div>')+
+    '<div class="sub muted">'+(D.addGrowth==null?'需要連續兩年的配息記錄才能拆解':'總額成長中 '+pct(D.addGrowth,0)+' 來自加碼')+'</div>'+
+    '<div class="bars"><i style="height:40%"></i><i style="height:70%"></i></div></div>';
+
+  const {held}=compute();
+  if(held.length){
+    const tot=held.reduce((a,x)=>a+x.value,0)||1;
+    h+='<div class="sec-title">資產配置</div><div class="card">'+
+      held.slice().sort((a,b)=>b.value-a.value).map(x=>{
+        const p=x.value/tot*100;
+        return '<div style="margin-bottom:10px"><div class="kv"><span>'+esc(x.code)+' '+esc(x.name||'')+'</span>'+
+        '<span class="num">'+nf(p,1)+'%</span></div>'+
+        '<div style="height:8px;background:var(--chip);border-radius:6px;overflow:hidden">'+
+        '<div style="height:100%;width:'+p.toFixed(1)+'%;background:var(--accent)"></div></div></div>';
+      }).join('')+'</div>';
+  }
+  setView(h,null);
+  $$('#view [data-go]').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.go;
+    if(k==='rt')sheet('累計總報酬拆解','<div class="card" style="box-shadow:none;background:var(--card2)">'+
+      kv('累計投入成本',money(basis))+kv('未實現損益',signed(sum.unreal))+kv('已實現損益',signed(sum.realized))+
+      kv('累計配息',signed(sum.div))+kv('總報酬',signed(sum.total))+kv('報酬率',pct(totalPct))+'</div>');
+    if(k==='yoy')sheet('配息同期比較','<div class="card" style="box-shadow:none;background:var(--card2)">'+
+      kv('本年至今',money(D.ytdT))+kv('去年同期',money(D.lyT))+kv('年增率',D.yoy==null?'—':pct(D.yoy))+'</div>');
+    if(k==='ps')sheet('配息成長拆解','<div class="card" style="box-shadow:none;background:var(--card2)">'+
+      kv('每股配息成長',D.psGrowth==null?'—':pct(D.psGrowth))+
+      kv('加碼帶來的成長',D.addGrowth==null?'—':pct(D.addGrowth))+'</div>'+
+      '<p class="muted" style="font-size:13px">以去年同期持股數為基準，先算出「配息本身變多」的幅度，其餘成長歸因於持股增加。</p>');
+  });
+}
+
+/* =================== 報價 =================== */
+let quoteBusy=false;
+function viewQuotes(){
+  const {held,sum}=compute();
+  let h='<div style="margin-bottom:12px"><div class="muted" style="margin-bottom:6px">查詢股票即時報價</div>'+
+    '<div class="btn2"><input id="qCode" placeholder="輸入代號（例：2330 或 0050）" inputmode="numeric">'+
+    '<button class="btn primary" id="qGo">查詢</button></div><div id="qOut"></div></div>';
+  h+='<div class="card"><div class="kv"><span class="k">今日持倉損益</span>'+
+     (quoteBusy?'<span class="spin"></span>':'<button class="btn sm ghost" id="qRef">更新報價</button>')+'</div>'+
+     '<div class="num '+cls(sum.dayPl)+'" style="font-size:32px;font-weight:800">'+
+     (S.hide?'****':(sum.dayPl?(sum.dayPl<0?'-':'+')+'NT$ '+nf(Math.abs(sum.dayPl)):'NT$ 0'))+'</div></div>';
+  h+='<div class="sec-title">持倉</div>';
+  h+=held.length?held.map(x=>{
+      const chg=x.dayChg,p=x.prevClose?chg/x.prevClose*100:null;
+      return '<div class="item"><div class="hl"><div><div class="code">'+esc(x.code)+'</div>'+
+        '<div class="nm">'+esc(x.name||'')+'</div></div><div style="text-align:right">'+
+        '<div class="code num">'+(x.price!=null?nf(x.price,2):'—')+'</div>'+
+        '<div class="num '+cls(chg)+'">'+(chg==null?'—':signed(chg,2)+' ('+pct(p)+')')+'</div></div></div>'+
+        '<div class="divider"></div><div class="kv"><span>'+nf(x.shares)+' 股 × '+(chg==null?'—':signed(chg,2))+' = '+
+        '<b class="'+cls(x.dayPl)+'">'+(x.dayPl==null?'—':signed(x.dayPl))+'</b></span>'+
+        '<span class="muted">'+esc(x.priceTime||'尚未更新')+'</span></div></div>';
+    }).join('')
+   :'<div class="card empty">尚無持倉</div>';
+  h+='<button class="btn ghost block" id="bulk" style="margin-top:6px">批次貼上價格</button>'+
+     '<p class="muted" style="font-size:12px;line-height:1.6;margin-top:10px">'+
+     '報價來自證交所／櫃買中心 Open API（最近交易日收盤價）。若瀏覽器因跨網域限制取不到資料，可用上方「批次貼上價格」手動更新，或在設定頁填入代理網址。</p>';
+  setView(h,null);
+  $('#qGo').onclick=()=>lookupOne($('#qCode').value.trim());
+  $('#qCode').addEventListener('keydown',e=>{if(e.key==='Enter')lookupOne(e.target.value.trim());});
+  const rb=$('#qRef');if(rb)rb.onclick=()=>fetchQuotes(true);
+  $('#bulk').onclick=bulkPriceSheet;
+}
+function bulkPriceSheet(){
+  const b=book();
+  const cur=Object.keys(b.prices).map(c=>c+' '+(b.prices[c].price!=null?b.prices[c].price:'')).join('\n');
+  sheet('批次貼上價格','<p class="muted" style="margin-top:0;font-size:13px">一行一筆，格式：代號 價格（可用空白或逗號分隔）</p>'+
+    '<textarea id="bp" rows="8" placeholder="0050 190.5&#10;00878 34.45">'+esc(cur)+'</textarea>'+
+    '<button class="btn primary block" id="bpSave" style="margin-top:12px">儲存</button>',el=>{
+    $('#bpSave',el).onclick=()=>{
+      let n=0;
+      $('#bp',el).value.split(/\n+/).forEach(line=>{
+        const m=line.trim().split(/[\s,]+/);
+        if(m.length>=2&&isFinite(parseFloat(m[1]))){
+          const c=m[0].toUpperCase();
+          book().prices[c]=Object.assign({},book().prices[c],{price:parseFloat(m[1]),src:'手動',time:'手動 '+todayStr()});n++;
+        }
+      });
+      save();closeSheet();render();toast('已更新 '+n+' 檔價格');
+    };
+  });
+}
+function lookupOne(code){
+  if(!code)return;
+  code=code.toUpperCase();
+  $('#qOut').innerHTML='<div class="card"><span class="spin"></span> 查詢中…</div>';
+  const src=isNative()
+    ?fetchRealtime([code]).then(m=>m[code]?m:fetchAll()).catch(()=>fetchAll())
+    :fetchAll();
+  src.then(map=>{
+    const r=map[code];
+    if(!r){$('#qOut').innerHTML='<div class="card empty">查無 '+esc(code)+' 的報價，可能是非上市櫃代號，或資料來源暫時無法連線。</div>';return;}
+    const chg=r.price-r.prev;
+    $('#qOut').innerHTML='<div class="item"><div class="hl"><div><div class="code">'+esc(code)+'</div>'+
+      '<div class="nm">'+esc(r.name||'')+'</div></div><div style="text-align:right">'+
+      '<div class="code num">'+nf(r.price,2)+'</div><div class="num '+cls(chg)+'">'+signed(chg,2)+
+      ' ('+pct(r.prev?chg/r.prev*100:0)+')</div></div></div>'+
+      '<div class="nm" style="margin-top:6px">'+esc(r.time||'')+'</div>'+
+      '<div class="swipe"><button class="btn sm primary" id="useP">設為 '+esc(code)+' 現價</button></div></div>';
+    $('#useP').onclick=()=>{
+      book().prices[code]=Object.assign({},book().prices[code],{price:r.price,prev:r.prev,time:r.time,src:r.src});
+      if(r.name)setName(code,r.name);
+      save();render();toast('已更新');
+    };
+  }).catch(e=>{$('#qOut').innerHTML='<div class="card empty">連線失敗：'+esc(e.message)+'</div>';});
+}
+
+/* ---- Open API 抓價 ---- */
+let quoteCache={t:0,map:null};
+function withProxy(u){const p=(S.cfg.proxy||'').trim();return p?p+encodeURIComponent(u):u;}
+
+/* ---- Android 外殼橋接（網頁版沒有 AndroidBridge，這段會被略過） ---- */
+function isNative(){return !!(window.AndroidBridge&&typeof window.AndroidBridge.httpGet==='function');}
+const _nq={};let _nid=0;
+window.__nativeCb=function(id,ok,body){
+  const q=_nq[id];if(!q)return;delete _nq[id];
+  if(ok)q.res(body);else q.rej(new Error(body||'連線失敗'));
+};
+function nativeGet(url){
+  return new Promise((res,rej)=>{
+    const id=String(++_nid);_nq[id]={res,rej};
+    try{window.AndroidBridge.httpGet(id,url);}catch(e){delete _nq[id];rej(e);return;}
+    setTimeout(()=>{if(_nq[id]){delete _nq[id];rej(new Error('連線逾時'));}},25000);
+  });
+}
+function jget(u){
+  if(isNative())return nativeGet(u).then(t=>JSON.parse(t));
+  return fetch(withProxy(u),{cache:'no-store'}).then(r=>{
+    if(!r.ok)throw new Error('HTTP '+r.status);return r.json();
+  });
+}
+/* 盤中即時報價（證交所 MIS，需原生連線才能取得） */
+function parseRealtime(j){
+  const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:null;};
+  const map={};
+  ((j&&j.msgArray)||[]).forEach(o=>{
+    if(!o||!o.c)return;
+    const prev=num(o.y);
+    let price=num(o.z);                                   // 最新成交價（未成交時為 "-"）
+    if(price==null&&o.b)price=num(String(o.b).split('_')[0]); // 改用委買第一檔
+    if(price==null)price=prev;
+    if(price==null)return;
+    map[o.c]={price,prev:prev!=null?prev:price,name:o.n,src:'MIS',time:'即時 '+(o.t||'')};
+  });
+  return map;
+}
+function fetchRealtime(codes){
+  if(!codes.length)return Promise.resolve({});
+  const ex=codes.map(c=>'tse_'+c+'.tw|otc_'+c+'.tw').join('|');
+  return nativeGet('https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch='+ex+'&json=1&delay=0')
+    .then(t=>parseRealtime(JSON.parse(t)));
+}
+function fetchAll(force){
+  if(!force&&quoteCache.map&&Date.now()-quoteCache.t<120000)return Promise.resolve(quoteCache.map);
+  const map={};
+  const twse=jget('https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL').then(arr=>{
+    (arr||[]).forEach(o=>{
+      const close=parseFloat(String(o.ClosingPrice).replace(/,/g,''));
+      const chg=parseFloat(String(o.Change).replace(/,/g,''));
+      if(isFinite(close))map[o.Code]={price:close,prev:isFinite(chg)?close-chg:close,name:o.Name,src:'TWSE',time:'收盤 '+todayStr()};
+    });
+  }).catch(e=>{console.warn('twse',e);});
+  const tpex=jget('https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes').then(arr=>{
+    (arr||[]).forEach(o=>{
+      const close=parseFloat(String(o.Close).replace(/,/g,''));
+      const chg=parseFloat(String(o.Change).replace(/,/g,''));
+      const c=o.SecuritiesCompanyCode||o.Code;
+      if(c&&isFinite(close))map[c]={price:close,prev:isFinite(chg)?close-chg:close,name:o.CompanyName||o.Name,src:'TPEx',time:'收盤 '+todayStr()};
+    });
+  }).catch(e=>{console.warn('tpex',e);});
+  return Promise.all([twse,tpex]).then(()=>{
+    if(!Object.keys(map).length)throw new Error('無法取得報價（可能被瀏覽器跨網域限制擋下）');
+    quoteCache={t:Date.now(),map};return map;
+  });
+}
+let lastQuoteAt=0;
+function fetchQuotes(force){
+  if(quoteBusy)return;
+  const {held}=compute();
+  if(!held.length){toast('尚無持倉');return;}
+  quoteBusy=true;render();
+  lastQuoteAt=Date.now();
+  const codes=held.map(x=>x.code);
+  const src=isNative()
+    ?fetchRealtime(codes).then(m=>Object.keys(m).length?m:fetchAll(force)).catch(()=>fetchAll(force))
+    :fetchAll(force);
+  src.then(map=>{
+    let n=0;
+    held.forEach(x=>{
+      const r=map[x.code];
+      if(r){book().prices[x.code]={price:r.price,prev:r.prev,time:r.time,src:r.src};if(r.name)setName(x.code,r.name);n++;}
+    });
+    save();quoteBusy=false;render();
+    toast(n?('已更新 '+n+' 檔報價'):'查無對應報價');
+  }).catch(e=>{quoteBusy=false;render();toast(e.message);});
+}
+
+/* =================== 設定 =================== */
+function viewSettings(){
+  const a=acct(),c=S.cfg;
+  let h='<div class="sec-title">帳戶</div><div class="group">'+
+    '<div class="list-row"><span class="ic">👤</span><span>目前帳戶：<b>'+esc(a.name)+'</b></span></div>'+
+    rowBtn('✏️','編輯個人資料（名稱／頭像）','editProfile')+
+    rowBtn('👥','切換帳戶','switchAcct')+
+    rowBtn('➕','新增帳戶','newAcct')+
+    rowBtn('🛠','帳戶管理','mgrAcct')+'</div>';
+
+  h+='<div class="sec-title">外觀模式</div><div class="group">'+
+    [['system','🌐','系統預設'],['light','☀️','淺色'],['dark','🌙','深色']].map(([k,i,l])=>
+      '<div class="list-row" data-theme-set="'+k+'"><span class="ic">'+i+'</span><span>'+l+'</span>'+
+      '<span class="gt">'+(S.theme===k?'<b style="color:var(--accent)">✓</b>':'')+'</span></div>').join('')+'</div>';
+
+  h+='<div class="sec-title">交易成本預設值</div><div class="card">'+
+    '<div class="grid2">'+
+    fld('手續費率 %','feeRate',c.feeRate)+fld('手續費折扣','feeDisc',c.feeDisc)+
+    fld('最低手續費','feeMin',c.feeMin)+fld('ETF 證交稅 %','taxEtf',c.taxEtf)+
+    fld('個股證交稅 %','taxStk',c.taxStk)+'</div>'+
+    '<button class="btn primary block" id="cfgSave" style="margin-top:10px">儲存</button></div>';
+
+  h+='<div class="sec-title">報價來源</div><div class="card">'+
+    '<div class="field"><label>CORS 代理網址（選填）</label>'+
+    '<input id="pxy" placeholder="https://your-proxy/?url=" value="'+esc(c.proxy||'')+'"></div>'+
+    '<p class="muted" style="font-size:12px;margin:0 0 10px">留空時直接連證交所 Open API。若手機瀏覽器擋下跨網域請求，可填入自己的代理網址（程式會把目標網址編碼後接在後面）。</p>'+
+    '<button class="btn block" id="pxySave">儲存</button></div>';
+
+  h+='<div class="sec-title">資料</div><div class="group">'+
+    rowBtn('📤','匯出備份（JSON）','expData')+
+    rowBtn('📥','匯入備份','impData')+
+    rowBtn('🧪','載入示範資料','demoData')+
+    rowBtn('🗑','清除此帳戶所有資料','wipeData')+'</div>';
+
+  h+='<div class="sec-title">關於</div><div class="card">'+
+    '<p style="margin:0 0 8px">台股 ETF 投資組合追蹤　v1.0</p>'+
+    '<p class="muted" style="font-size:13px;margin:0">所有資料只存在這支手機的瀏覽器中，不會上傳到任何伺服器。換手機或清除瀏覽器資料前，請先用「匯出備份」保存。</p>'+
+    '<p class="muted" style="font-size:13px;margin:8px 0 0">安裝方式：用手機瀏覽器開啟本頁 → 選單 →「加入主畫面」。</p></div>';
+
+  setView(h,null);
+  $$('#view [data-theme-set]').forEach(el=>el.onclick=()=>{S.theme=el.dataset.themeSet;save();applyTheme();render();});
+  $('#cfgSave').onclick=()=>{
+    ['feeRate','feeDisc','feeMin','taxEtf','taxStk'].forEach(k=>{
+      const v=parseFloat($('#f_'+k).value);if(isFinite(v))S.cfg[k]=v;});
+    save();toast('已儲存');
+  };
+  $('#pxySave').onclick=()=>{S.cfg.proxy=$('#pxy').value.trim();save();toast('已儲存');};
+  const A={editProfile,switchAcct,newAcct,mgrAcct,expData,impData,demoData,wipeData};
+  $$('#view [data-act]').forEach(el=>el.onclick=()=>A[el.dataset.act]());
+}
+function rowBtn(ic,label,act){
+  return '<div class="list-row" data-act="'+act+'"><span class="ic">'+ic+'</span><span>'+label+'</span><span class="gt">›</span></div>';
+}
+function fld(label,k,v){
+  return '<div class="field"><label>'+label+'</label><input id="f_'+k+'" type="number" step="0.0001" inputmode="decimal" value="'+v+'"></div>';
+}
+
+/* ---- 帳戶 ---- */
+const AVATARS=['🐱','🐶','🦊','🐻','🐼','🐨','🦁','🐯','🐸','🐵','🦄','🐺','🦉','🐢','🐬','🦈','🌱','🌳','💎','🚀','⭐','🔥','💼','📈'];
+function editProfile(){
+  const a=acct();
+  sheet('編輯個人資料',
+    '<div class="field"><label>帳戶名稱</label><input id="an" value="'+esc(a.name)+'"></div>'+
+    '<div class="field"><label>頭像</label><div id="avs" style="display:flex;flex-wrap:wrap;gap:8px">'+
+    AVATARS.map(v=>'<button class="chip'+(a.avatar===v?' on':'')+'" data-av="'+v+'" style="font-size:22px;padding:6px 10px">'+v+'</button>').join('')+
+    '</div></div><button class="btn primary block" id="apSave">儲存</button>',el=>{
+      let av=a.avatar;
+      $$('[data-av]',el).forEach(b=>b.onclick=()=>{av=b.dataset.av;$$('[data-av]',el).forEach(x=>x.classList.remove('on'));b.classList.add('on');});
+      $('#apSave',el).onclick=()=>{a.name=$('#an',el).value.trim()||a.name;a.avatar=av;save();closeSheet();render();};
+    });
+}
+function switchAcct(){
+  sheet('切換帳戶',S.accounts.map(a=>
+    '<div class="list-row" data-sw="'+a.id+'"><span class="ic">'+a.avatar+'</span><span>'+esc(a.name)+'</span>'+
+    '<span class="gt">'+(a.id===S.activeId?'✓':'›')+'</span></div>').join(''),el=>{
+      $$('[data-sw]',el).forEach(x=>x.onclick=()=>{S.activeId=x.dataset.sw;save();closeSheet();render();});
+    });
+}
+function newAcct(){
+  sheet('新增帳戶','<div class="field"><label>帳戶名稱</label><input id="nn" placeholder="例：ETF-B"></div>'+
+    '<button class="btn primary block" id="nnSave">建立</button>',el=>{
+      $('#nnSave',el).onclick=()=>{
+        const n=$('#nn',el).value.trim();if(!n){toast('請輸入名稱');return;}
+        const id=uid();S.accounts.push({id,name:n,avatar:'🐱'});S.books[id]=blankBook();S.activeId=id;
+        save();closeSheet();render();toast('已建立帳戶');
+      };
+    });
+}
+function mgrAcct(){
+  sheet('帳戶管理',S.accounts.map(a=>{
+    const b=S.books[a.id]||blankBook();
+    return '<div class="item"><div class="hl"><div><b>'+a.avatar+' '+esc(a.name)+'</b>'+
+    '<div class="nm">'+b.trades.length+' 筆交易・'+b.divs.length+' 筆配息</div></div>'+
+    (S.accounts.length>1?'<button class="btn sm ghost" data-del="'+a.id+'">刪除</button>':'<span class="tag">唯一帳戶</span>')+
+    '</div></div>';}).join(''),el=>{
+      $$('[data-del]',el).forEach(x=>x.onclick=()=>{
+        const id=x.dataset.del,a=S.accounts.find(z=>z.id===id);
+        confirmSheet('刪除帳戶','確定刪除「'+a.name+'」？該帳戶的交易與配息記錄會一併刪除，且無法復原。',()=>{
+          S.accounts=S.accounts.filter(z=>z.id!==id);delete S.books[id];
+          if(S.activeId===id)S.activeId=S.accounts[0].id;
+          save();render();toast('已刪除');
+        },'刪除');
+      });
+    });
+}
+
+/* ---- 資料 ---- */
+function expData(){
+  const json=JSON.stringify(S,null,2);
+  const fname='etf-backup-'+todayStr()+'.json';
+  sheet('匯出備份',
+    '<p class="muted" style="margin-top:0;font-size:13px">下載 JSON 檔保存，或複製下面的文字存到記事本／雲端筆記。還原時用「匯入備份」。</p>'+
+    '<button class="btn primary block" id="dlBtn">⬇ 下載 '+esc(fname)+'</button>'+
+    '<button class="btn block" id="cpBtn" style="margin-top:8px">📋 複製備份文字</button>'+
+    '<textarea id="bkTxt" rows="6" style="margin-top:10px" readonly></textarea>',el=>{
+      $('#bkTxt',el).value=json;
+      $('#dlBtn',el).onclick=()=>{
+        if(window.AndroidBridge&&typeof window.AndroidBridge.saveFile==='function'){
+          window.AndroidBridge.saveFile(fname,json);return;   // 原生：寫入「下載」資料夾並顯示提示
+        }
+        const viaLink=()=>{
+          try{
+            const a=document.createElement('a');
+            a.href=URL.createObjectURL(new Blob([json],{type:'application/json'}));
+            a.download=fname;document.body.appendChild(a);a.click();a.remove();
+            setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+            toast('已匯出備份');
+          }catch(e){toast('此環境無法下載，請改用複製文字');}
+        };
+        const c=window.claude;
+        if(c&&typeof c.use==='function'){
+          c.use('downloads').then(dl=>{
+            if(dl&&dl.save)return dl.save({filename:fname,data:json}).then(()=>toast('已匯出備份'),
+              err=>{if(!err||err.code!=='declined')viaLink();});
+            viaLink();
+          }).catch(viaLink);
+        }else viaLink();
+      };
+      $('#cpBtn',el).onclick=()=>{
+        const ta=$('#bkTxt',el);ta.select();ta.setSelectionRange(0,json.length);
+        const done=()=>toast('已複製備份文字');
+        if(navigator.clipboard&&navigator.clipboard.writeText)
+          navigator.clipboard.writeText(json).then(done,()=>{try{document.execCommand('copy');done();}catch(e){toast('請長按選取複製');}});
+        else{try{document.execCommand('copy');done();}catch(e){toast('請長按選取複製');}}
+      };
+    });
+}
+function impData(){
+  const apply=txt=>{
+    try{
+      const o=JSON.parse(txt);
+      if(!o.accounts||!o.books)throw new Error('格式不符');
+      S=Object.assign(defaultState(),o);save();closeSheet();applyTheme();render();toast('匯入完成');
+    }catch(err){toast('匯入失敗：'+err.message);}
+  };
+  sheet('匯入備份','<p class="muted" style="margin-top:0;font-size:13px">選擇之前匯出的 JSON 檔，或直接貼上備份文字。匯入後會覆蓋目前所有資料。</p>'+
+    '<input type="file" id="fi" accept="application/json,.json">'+
+    '<textarea id="ipTxt" rows="5" placeholder="或在這裡貼上備份文字…" style="margin-top:10px"></textarea>'+
+    '<button class="btn primary block" id="ipGo" style="margin-top:10px">匯入貼上的內容</button>',el=>{
+      $('#fi',el).onchange=e=>{
+        const f=e.target.files[0];if(!f)return;
+        const r=new FileReader();r.onload=()=>apply(r.result);r.readAsText(f);
+      };
+      $('#ipGo',el).onclick=()=>{const t=$('#ipTxt',el).value.trim();if(!t){toast('請先貼上內容');return;}apply(t);};
+    });
+}
+function wipeData(){
+  confirmSheet('清除資料','確定清除「'+acct().name+'」的所有交易、配息與價格嗎？此動作無法復原。',()=>{
+    S.books[S.activeId]=blankBook();save();render();toast('已清除');
+  },'清除');
+}
+function demoData(){
+  confirmSheet('載入示範資料','會在目前帳戶加入幾筆範例交易與配息，方便先看看畫面。要繼續嗎？',()=>{
+    const b=book();
+    const add=(code,name,type,date,shares,price)=>{
+      const amt=shares*price;
+      b.trades.push({id:uid(),code,name,type,date,shares,price,fee:calcFee(amt),tax:type==='sell'?calcTax(code,amt):0});
+      setName(code,name);
+    };
+    add('0056','元大高股息','buy','2024-04-01',1000,39.63);
+    add('00878','國泰永續高股息','buy','2024-06-11',4000,21.8);
+    add('00919','群益台灣精選高息','buy','2024-09-02',4000,24.1);
+    add('00980A','主動野村臺灣優選','buy','2026-02-25',1000,17.5);
+    b.divs.push({id:uid(),code:'00878',name:'國泰永續高股息',date:'2025-11-20',perShare:0.55,shares:4000,tax:0,amount:2200});
+    b.divs.push({id:uid(),code:'00919',name:'群益台灣精選高息',date:'2025-12-16',perShare:0.72,shares:4000,tax:0,amount:2880});
+    b.divs.push({id:uid(),code:'00878',name:'國泰永續高股息',date:'2026-05-20',perShare:0.61,shares:4000,tax:0,amount:2440});
+    b.events.push({id:uid(),code:'00919',name:'群益台灣精選高息',exDate:'2026-09-16',payDate:'2026-10-15',perShare:1.1,status:'pending'});
+    b.prices['0056']={price:55.55,prev:55.1,time:'示範資料',src:'demo'};
+    b.prices['00878']={price:34.45,prev:34.23,time:'示範資料',src:'demo'};
+    b.prices['00919']={price:31.98,prev:32.89,time:'示範資料',src:'demo'};
+    b.prices['00980A']={price:19.2,prev:19.1,time:'示範資料',src:'demo'};
+    save();render();toast('已載入示範資料');
+  },'載入');
+}
+
+/* =================== 表單 =================== */
+function tradeForm(t,presetCode){
+  const isNew=!t;
+  t=t||{id:uid(),code:presetCode||'',name:'',type:'buy',date:todayStr(),shares:1000,price:'',fee:'',tax:''};
+  sheet(isNew?'新增交易':'編輯交易',
+    '<div class="seg-inline" style="margin-bottom:12px"><button data-t="buy" class="'+(t.type==='buy'?'on':'')+'">買進</button>'+
+    '<button data-t="sell" class="'+(t.type==='sell'?'on':'')+'">賣出</button></div>'+
+    '<div class="grid2">'+
+      '<div class="field"><label>股票代號</label><input id="t_code" value="'+esc(t.code)+'" inputmode="numeric"></div>'+
+      '<div class="field"><label>名稱（選填）</label><input id="t_name" value="'+esc(t.name||stockName(t.code))+'"></div>'+
+      '<div class="field"><label>日期</label><input id="t_date" type="date" value="'+esc(t.date)+'"></div>'+
+      '<div class="field"><label>股數</label><input id="t_shares" type="number" inputmode="numeric" value="'+t.shares+'"></div>'+
+      '<div class="field"><label>成交價</label><input id="t_price" type="number" step="0.01" inputmode="decimal" value="'+t.price+'"></div>'+
+      '<div class="field"><label>手續費</label><input id="t_fee" type="number" inputmode="numeric" value="'+(t.fee===''?'':t.fee)+'" placeholder="自動"></div>'+
+      '<div class="field"><label>證交稅（賣出）</label><input id="t_tax" type="number" inputmode="numeric" value="'+(t.tax===''?'':t.tax)+'" placeholder="自動"></div>'+
+    '</div>'+
+    '<div id="t_prev" class="muted" style="font-size:13px;margin-bottom:12px"></div>'+
+    '<div class="btn2"><button class="btn primary" id="t_save">儲存</button>'+
+    (isNew?'<button class="btn" id="t_cancel">取消</button>':'<button class="btn" id="t_del">刪除</button>')+'</div>',
+  el=>{
+    let type=t.type;
+    const upd=()=>{
+      const sh=+$('#t_shares',el).value||0,pr=+$('#t_price',el).value||0,code=$('#t_code',el).value.trim();
+      const amt=sh*pr;
+      const fee=$('#t_fee',el).value===''?calcFee(amt):+$('#t_fee',el).value;
+      const tax=type==='sell'?($('#t_tax',el).value===''?calcTax(code,amt):+$('#t_tax',el).value):0;
+      $('#t_prev',el).innerHTML='成交金額 '+nf(amt)+'　手續費 '+nf(fee)+(type==='sell'?'　證交稅 '+nf(tax):'')+
+        '　<b>'+(type==='buy'?'總支出 '+nf(amt+fee):'實收 '+nf(amt-fee-tax))+'</b>';
+    };
+    $$('[data-t]',el).forEach(b=>b.onclick=()=>{type=b.dataset.t;$$('[data-t]',el).forEach(x=>x.classList.remove('on'));b.classList.add('on');upd();});
+    ['t_shares','t_price','t_fee','t_tax','t_code'].forEach(id=>$('#'+id,el).addEventListener('input',upd));
+    upd();
+    $('#t_save',el).onclick=()=>{
+      const code=$('#t_code',el).value.trim().toUpperCase();
+      const sh=+$('#t_shares',el).value,pr=+$('#t_price',el).value;
+      if(!code||!sh||!pr){toast('請填代號、股數與價格');return;}
+      const amt=sh*pr;
+      const rec={id:t.id,code,name:$('#t_name',el).value.trim()||stockName(code),type,date:$('#t_date',el).value||todayStr(),
+        shares:sh,price:pr,
+        fee:$('#t_fee',el).value===''?calcFee(amt):+$('#t_fee',el).value,
+        tax:type==='sell'?($('#t_tax',el).value===''?calcTax(code,amt):+$('#t_tax',el).value):0,
+        seq:t.seq||Date.now()};
+      setName(code,rec.name);
+      const b=book(),i=b.trades.findIndex(z=>z.id===t.id);
+      if(i>=0)b.trades[i]=rec;else b.trades.push(rec);
+      if(b.order.indexOf(code)<0)b.order.push(code);
+      save();closeSheet();render();toast(isNew?'已新增交易':'已更新');
+    };
+    if($('#t_cancel',el))$('#t_cancel',el).onclick=closeSheet;
+    if($('#t_del',el))$('#t_del',el).onclick=()=>confirmSheet('刪除交易','確定刪除這筆交易記錄？',()=>{
+      const b=book();b.trades=b.trades.filter(z=>z.id!==t.id);save();render();toast('已刪除');},'刪除');
+  });
+}
+function divForm(d,presetCode){
+  const isNew=!d;
+  d=d||{id:uid(),code:presetCode||'',name:'',date:todayStr(),perShare:'',shares:'',tax:0};
+  if(isNew&&presetCode)d.shares=sharesAt(presetCode,todayStr());
+  sheet(isNew?'新增配息':'編輯配息',
+    '<div class="grid2">'+
+      '<div class="field"><label>股票代號</label><input id="d_code" value="'+esc(d.code)+'" inputmode="numeric"></div>'+
+      '<div class="field"><label>名稱（選填）</label><input id="d_name" value="'+esc(d.name||stockName(d.code))+'"></div>'+
+      '<div class="field"><label>入帳日期</label><input id="d_date" type="date" value="'+esc(d.date)+'"></div>'+
+      '<div class="field"><label>每股配息</label><input id="d_ps" type="number" step="0.0001" inputmode="decimal" value="'+d.perShare+'"></div>'+
+      '<div class="field"><label>持有股數</label><input id="d_sh" type="number" inputmode="numeric" value="'+d.shares+'"></div>'+
+      '<div class="field"><label>二代健保／稅費</label><input id="d_tax" type="number" inputmode="numeric" value="'+(d.tax||0)+'"></div>'+
+    '</div>'+
+    '<div id="d_prev" class="muted" style="font-size:13px;margin-bottom:12px"></div>'+
+    '<div class="btn2"><button class="btn green" id="d_save">儲存</button>'+
+    (isNew?'<button class="btn" id="d_cancel">取消</button>':'<button class="btn" id="d_del">刪除</button>')+'</div>',
+  el=>{
+    const upd=()=>{
+      const v=Math.round((+$('#d_ps',el).value||0)*(+$('#d_sh',el).value||0)-(+$('#d_tax',el).value||0));
+      $('#d_prev',el).innerHTML='實收股利 <b>'+nf(v)+'</b> 元';
+    };
+    ['d_ps','d_sh','d_tax'].forEach(id=>$('#'+id,el).addEventListener('input',upd));
+    $('#d_code',el).addEventListener('blur',()=>{
+      const c=$('#d_code',el).value.trim().toUpperCase();
+      if(c&&!$('#d_sh',el).value)$('#d_sh',el).value=sharesAt(c,$('#d_date',el).value||todayStr());
+      if(c&&!$('#d_name',el).value)$('#d_name',el).value=stockName(c);
+      upd();
+    });
+    upd();
+    $('#d_save',el).onclick=()=>{
+      const code=$('#d_code',el).value.trim().toUpperCase();
+      const ps=+$('#d_ps',el).value,sh=+$('#d_sh',el).value;
+      if(!code||!ps||!sh){toast('請填代號、每股配息與股數');return;}
+      const rec={id:d.id,code,name:$('#d_name',el).value.trim()||stockName(code),date:$('#d_date',el).value||todayStr(),
+        perShare:ps,shares:sh,tax:+$('#d_tax',el).value||0};
+      rec.amount=Math.round(ps*sh-rec.tax);
+      setName(code,rec.name);
+      const b=book(),i=b.divs.findIndex(z=>z.id===d.id);
+      if(i>=0)b.divs[i]=rec;else b.divs.push(rec);
+      save();closeSheet();render();toast(isNew?'已新增配息':'已更新');
+    };
+    if($('#d_cancel',el))$('#d_cancel',el).onclick=closeSheet;
+    if($('#d_del',el))$('#d_del',el).onclick=()=>confirmSheet('刪除配息','確定刪除這筆配息記錄？',()=>{
+      const b=book();b.divs=b.divs.filter(z=>z.id!==d.id);save();render();toast('已刪除');},'刪除');
+  });
+}
+function eventForm(e){
+  const isNew=!e;
+  e=e||{id:uid(),code:'',name:'',exDate:todayStr(),payDate:'',perShare:'',status:'pending'};
+  sheet(isNew?'新增除息公告':'編輯除息公告',
+    '<div class="grid2">'+
+      '<div class="field"><label>股票代號</label><input id="e_code" value="'+esc(e.code)+'" inputmode="numeric"></div>'+
+      '<div class="field"><label>名稱（選填）</label><input id="e_name" value="'+esc(e.name||'')+'"></div>'+
+      '<div class="field"><label>除息日</label><input id="e_ex" type="date" value="'+esc(e.exDate)+'"></div>'+
+      '<div class="field"><label>發放日（選填）</label><input id="e_pay" type="date" value="'+esc(e.payDate||'')+'"></div>'+
+      '<div class="field"><label>每股配息</label><input id="e_ps" type="number" step="0.0001" inputmode="decimal" value="'+e.perShare+'"></div>'+
+    '</div>'+
+    '<p class="muted" style="font-size:13px;margin-top:0">除息日到了之後，會出現在「待確認配息」，按一下就能自動換算持股並入帳。</p>'+
+    '<div class="btn2"><button class="btn primary" id="e_save">儲存</button>'+
+    (isNew?'<button class="btn" id="e_cancel">取消</button>':'<button class="btn" id="e_del">刪除</button>')+'</div>',
+  el=>{
+    $('#e_save',el).onclick=()=>{
+      const code=$('#e_code',el).value.trim().toUpperCase(),ps=+$('#e_ps',el).value;
+      if(!code||!ps){toast('請填代號與每股配息');return;}
+      const rec={id:e.id,code,name:$('#e_name',el).value.trim()||stockName(code),
+        exDate:$('#e_ex',el).value||todayStr(),payDate:$('#e_pay',el).value||'',perShare:ps,status:e.status||'pending'};
+      const b=book(),i=b.events.findIndex(z=>z.id===e.id);
+      if(i>=0)b.events[i]=rec;else b.events.push(rec);
+      save();closeSheet();render();toast('已儲存');
+    };
+    if($('#e_cancel',el))$('#e_cancel',el).onclick=closeSheet;
+    if($('#e_del',el))$('#e_del',el).onclick=()=>confirmSheet('刪除公告','確定刪除這筆除息公告？',()=>{
+      const b=book();b.events=b.events.filter(z=>z.id!==e.id);save();render();toast('已刪除');},'刪除');
+  });
+}
+
+/* =================== 路由 =================== */
+let TAB='overview';
+function setView(html,fab){
+  $('#view').innerHTML=html;
+  const f=$('#fab');
+  if(fab){f.classList.remove('hide');f.classList.toggle('green',fab==='div');
+    f.onclick=()=>fab==='div'?divForm():tradeForm();}
+  else f.classList.add('hide');
+  window.scrollTo(0,0);
+}
+function render(){
+  const a=acct();
+  $('#acctName').textContent=a.name;
+  $('#avatarBtn').textContent=a.avatar||'🐱';
+  $$('#tabbar button').forEach(b=>b.classList.toggle('on',b.dataset.tab===TAB));
+  ({overview:viewOverview,trades:viewTrades,divs:viewDivs,
+    analysis:viewAnalysis,quotes:viewQuotes,settings:viewSettings}[TAB]||viewOverview)();
+}
+function init(){
+  load();applyTheme();
+  $$('#tabbar button').forEach(b=>b.onclick=()=>{TAB=b.dataset.tab;render();});
+  $('#acctBtn').onclick=switchAcct;
+  $('#avatarBtn').onclick=editProfile;
+  render();
+  if(book().trades.length)setTimeout(()=>fetchQuotes(false),600);
+  // 回到前景時（切換 App／螢幕解鎖）自動更新，最多每 60 秒一次
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='visible'&&book().trades.length&&Date.now()-lastQuoteAt>60000)fetchQuotes(false);
+  });
+}
+/* 返回鍵：先關對話框，再回總覽，最後才離開 App（回傳 true 表示已處理） */
+function back(){
+  if($('#modalRoot').children.length){closeSheet();return true;}
+  if(TAB!=='overview'){TAB='overview';render();return true;}
+  return false;
+}
+window.__app={get S(){return S;},compute,init,render,back,parseRealtime,set TAB(v){TAB=v;},get TAB(){return TAB;}};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+</body>
+</html>
