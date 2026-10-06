@@ -10,8 +10,20 @@ android {
         applicationId 'tw.etf.portfolio'
         minSdk 29
         targetSdk 34
-        versionCode 1
-        versionName '1.0'
+        versionCode Integer.parseInt(System.getenv('GITHUB_RUN_NUMBER') ?: '1')
+        versionName '1.' + (System.getenv('GITHUB_RUN_NUMBER') ?: '0')
+    }
+
+    // 固定簽章：每次在 GitHub 編譯出來的 APK 都用同一把金鑰簽名，
+    // 這樣新版才能直接覆蓋安裝舊版，不會出現「與現有套件衝突」
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storeType 'pkcs12'
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
     }
 
     buildTypes {
