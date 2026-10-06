@@ -213,7 +213,7 @@ const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 /* ---------- 預設資料 ---------- */
-function blankBook(){return{trades:[],divs:[],events:[],prices:{},names:{},order:[]};}
+function blankBook(){return{trades:[],divs:[],events:[],prices:{},names:{},order:[],snaps:{}};}
 function defaultState(){
   const id=uid();
   return{
@@ -240,7 +240,7 @@ function load(){
       S.accounts.forEach(a=>{if(!S.books[a.id])S.books[a.id]=blankBook();});
       Object.values(S.books).forEach(b=>{
         b.trades=b.trades||[];b.divs=b.divs||[];b.events=b.events||[];
-        b.prices=b.prices||{};b.names=b.names||{};b.order=b.order||[];
+        b.prices=b.prices||{};b.names=b.names||{};b.order=b.order||[];b.snaps=b.snaps||{};
       });
     }
   }catch(e){console.warn('load fail',e);}
@@ -705,7 +705,8 @@ function viewAnalysis(){
   const h1=Math.max(6,Math.min(88,Math.abs(capPct)));
   const h2=Math.max(6,Math.min(88,Math.abs(divPct)));
 
-  let h='<div class="acard red"><button class="pill" data-go="rt">拆解 →</button>'+
+  let h=chartCard();
+  h+='<div class="acard red"><button class="pill" data-go="rt">拆解 →</button>'+
     '<div>累計總報酬</div><div class="pct">'+pct(totalPct,0)+'</div>'+
     '<div class="sub">配息 '+pct(divPct,0)+' ・ 價差 '+pct(capPct,0)+'</div>'+
     '<div class="sub">投入成本 '+money(basis)+'</div>'+
@@ -738,6 +739,7 @@ function viewAnalysis(){
       }).join('')+'</div>';
   }
   setView(h,null);
+  mountChart();
   $$('#view [data-go]').forEach(b=>b.onclick=()=>{
     const k=b.dataset.go;
     if(k==='rt')sheet('累計總報酬拆解','<div class="card" style="box-shadow:none;background:var(--card2)">'+
@@ -799,7 +801,7 @@ function bulkPriceSheet(){
           book().prices[c]=Object.assign({},book().prices[c],{price:parseFloat(m[1]),src:'手動',time:'手動 '+todayStr()});n++;
         }
       });
-      save();closeSheet();render();toast('已更新 '+n+' 檔價格');
+      save();recordSnap();closeSheet();render();toast('已更新 '+n+' 檔價格');
     };
   });
 }
@@ -913,7 +915,7 @@ function fetchQuotes(force){
       const r=map[x.code];
       if(r){book().prices[x.code]={price:r.price,prev:r.prev,time:r.time,src:r.src};if(r.name)setName(x.code,r.name);n++;}
     });
-    save();quoteBusy=false;render();
+    save();recordSnap();quoteBusy=false;render();
     toast(n?('已更新 '+n+' 檔報價'):'查無對應報價');
   }).catch(e=>{quoteBusy=false;render();toast(e.message);});
 }
@@ -1341,6 +1343,235 @@ function eventForm(e){
   });
 }
 
+
+/* =================== 每日庫存報酬率（紀錄＋圖表＋回補歷史） =================== */
+/* b.snaps[YYYY-MM-DD] = {v:市值, c:持股成本, p:庫存報酬率%, s:'l'實際記錄 | 'h'歷史回補} */
+function recordSnap(){
+  const dt=new Date(),dow=dt.getDay();
+  if(dow===0||dow===6||dt.getHours()<9)return;          // 週末、開盤前不記（價格還是上一個交易日的）
+  const {held,sum}=compute();
+  if(!held.length||held.some(h=>h.noPrice)||!(sum.cost>0))return;
+  const b=book();b.snaps=b.snaps||{};
+  b.snaps[todayStr()]={v:Math.round(sum.value),c:Math.round(sum.cost),p:+sum.unrealPct.toFixed(3),s:'l'};
+  save();
+}
+function snapSeries(range){
+  const snaps=book().snaps||{};
+  let keys=Object.keys(snaps).sort();
+  if(range!=='all'){const from=addDays(todayStr(),range==='1m'?-31:-92);keys=keys.filter(k=>k>=from);}
+  return keys.map(k=>({d:k,p:snaps[k].p,v:snaps[k].v,c:snaps[k].c,s:snaps[k].s}));
+}
+function niceStep(range){
+  const raw=Math.max(range,0.2)/4,p=Math.pow(10,Math.floor(Math.log10(raw))),f=raw/p;
+  return (f<=1?1:f<=2?2:f<=5?5:10)*p;
+}
+function chartSvg(pts){
+  const W=340,H=180,L=42,R=8,T=10,B=20,n=pts.length;
+  let lo=Math.min.apply(null,pts.map(p=>p.p).concat(0)),hi=Math.max.apply(null,pts.map(p=>p.p).concat(0));
+  if(hi-lo<1){hi+=0.5;lo-=0.5;}
+  const step=niceStep(hi-lo);lo=Math.floor(lo/step+1e-9)*step;hi=Math.ceil(hi/step-1e-9)*step;
+  const X=i=>L+(n>1?i/(n-1):0.5)*(W-L-R), Y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
+  const dec=step<1?1:0;
+  let g='';
+  for(let v=lo;v<=hi+1e-9;v+=step){
+    g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'" stroke="var(--line)" stroke-width="'+(Math.abs(v)<1e-9?1.5:1)+'"/>'+
+       '<text x="'+(L-5)+'" y="'+(Y(v)+4).toFixed(1)+'" text-anchor="end" font-size="10" fill="var(--muted)">'+nf(v,dec)+'%</text>';
+  }
+  const md=d=>d.slice(5).replace('-','/');
+  const xl=[0];if(n>=5)xl.push(Math.floor((n-1)/2));if(n>1)xl.push(n-1);
+  xl.forEach((i,k)=>{g+='<text x="'+X(i).toFixed(1)+'" y="'+(H-5)+'" text-anchor="'+(k===0?'start':(i===n-1?'end':'middle'))+'" font-size="10" fill="var(--muted)">'+md(pts[i].d)+'</text>';});
+  const line=pts.map((p,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(p.p).toFixed(1)).join(' ');
+  const area=line+' L'+X(n-1).toFixed(1)+' '+Y(0).toFixed(1)+' L'+X(0).toFixed(1)+' '+Y(0).toFixed(1)+' Z';
+  const up=pts[n-1].p>=0;
+  return '<svg id="chSvg" viewBox="0 0 '+W+' '+H+'" style="width:100%;display:block;touch-action:pan-y;color:var(--'+(up?'up':'down')+')">'+g+
+    '<path d="'+area+'" fill="currentColor" opacity=".10"/>'+
+    '<path d="'+line+'" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'+
+    '<line id="chX" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--muted)" stroke-dasharray="3 3" style="display:none"/>'+
+    '<circle id="chDot" r="4" fill="currentColor" stroke="var(--card)" stroke-width="2" cx="'+X(n-1).toFixed(1)+'" cy="'+Y(pts[n-1].p).toFixed(1)+'"/></svg>';
+}
+function chartCard(){
+  const range=S.ui.chRange||'3m',all=book().snaps||{},total=Object.keys(all).length;
+  const hist=Object.keys(all).filter(k=>all[k].s==='h').length;
+  const pts=snapSeries(range);
+  let h='<div class="card"><div class="kv" style="padding-top:0"><b style="font-size:17px">庫存報酬率（每日）</b></div>'+
+    '<div class="segs light" style="margin:6px 0 10px">'+[['1m','近1月'],['3m','近3月'],['all','全部']].map(r=>
+      '<button data-rg="'+r[0]+'" class="'+(range===r[0]?'on':'')+'">'+r[1]+'</button>').join('')+'</div>';
+  if(pts.length<2){
+    h+='<div class="empty" style="padding:26px 6px">'+(total?'目前只有 '+total+' 天的紀錄，累積 2 天以上就能畫出曲線。':'還沒有任何每日紀錄。')+
+      '<br>可按下方「回補歷史」，用過去的收盤價立刻補齊。</div>';
+  }else{
+    h+='<div id="chRead" class="num" style="min-height:44px"></div><div id="chBox">'+chartSvg(pts)+'</div>';
+  }
+  h+='<div class="btn2" style="margin-top:10px"><button class="btn sm ghost" id="chBack">回補歷史</button>'+
+    '<button class="btn sm ghost" id="chClear"'+(total?'':' disabled')+'>清除紀錄</button></div>'+
+    '<p class="muted" style="font-size:12px;line-height:1.6;margin:10px 0 0">庫存報酬率 ＝ 未實現損益 ÷ 持股成本（不含配息與已實現）。每個交易日開 App 時自動記錄當天；'+
+    '已記錄 '+total+' 天'+(hist?'（其中 '+hist+' 天由歷史收盤價回補）':'')+'。</p></div>';
+  return h;
+}
+function mountChart(){
+  $$('#view [data-rg]').forEach(b=>b.onclick=()=>{S.ui.chRange=b.dataset.rg;save();render();});
+  $('#chBack').onclick=backfillSheet;
+  $('#chClear').onclick=()=>confirmSheet('清除每日紀錄','會刪掉所有已記錄與回補的每日報酬率（不影響交易資料）。確定嗎？',()=>{
+    book().snaps={};save();render();toast('已清除');},'清除');
+  const svg=$('#chSvg');if(!svg)return;
+  const pts=snapSeries(S.ui.chRange||'3m'),n=pts.length,W=340,L=42,R=8;
+  const rd=$('#chRead'),x=$('#chX'),dot=$('#chDot');
+  const show=(i,moving)=>{
+    const p=pts[i];
+    rd.innerHTML='<div class="muted" style="font-size:13px">'+p.d+(p.s==='h'?'（回補）':'')+'</div>'+
+      '<span class="'+cls(p.p)+'" style="font-size:24px;font-weight:800">'+pct(p.p)+'</span>'+
+      ' <span class="muted" style="font-size:12px">市值 '+(S.hide?'****':nf(p.v))+' ／ 成本 '+(S.hide?'****':nf(p.c))+'</span>';
+    const xx=L+(n>1?i/(n-1):0.5)*(W-L-R);
+    dot.setAttribute('cx',xx.toFixed(1));
+    x.setAttribute('x1',xx.toFixed(1));x.setAttribute('x2',xx.toFixed(1));x.style.display=moving?'':'none';
+  };
+  // 圓點的 y 要跟著資料點移動：從 path 重新算
+  const yOf=(()=>{let l=Math.min.apply(null,pts.map(p=>p.p).concat(0)),hh=Math.max.apply(null,pts.map(p=>p.p).concat(0));
+    if(hh-l<1){hh+=0.5;l-=0.5;}const st=niceStep(hh-l);l=Math.floor(l/st+1e-9)*st;hh=Math.ceil(hh/st-1e-9)*st;
+    return v=>10+(hh-v)/(hh-l)*(180-10-20);})();
+  const move=ev=>{
+    const r=svg.getBoundingClientRect();
+    const px=(ev.clientX-r.left)/r.width*W;
+    let i=Math.round((px-L)/(W-L-R)*(n-1));i=Math.max(0,Math.min(n-1,i));
+    show(i,true);dot.setAttribute('cy',yOf(pts[i].p).toFixed(1));
+  };
+  svg.addEventListener('pointerdown',move);svg.addEventListener('pointermove',move);
+  show(n-1,false);
+}
+
+/* ---- 回補歷史：用證交所／櫃買的「個股日成交資訊」月資料還原過去每天的庫存報酬率 ---- */
+const histCache={};let backBusy=false;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function slashDate(s){ // '115/09/01' → '2026-09-01'
+  const m=String(s||'').replace(/[^\d\/]/g,'').match(/^(\d{2,4})\/(\d{1,2})\/(\d{1,2})$/);
+  if(!m)return '';
+  const y=+m[1]<1911?+m[1]+1911:+m[1];
+  return y+'-'+String(m[2]).padStart(2,'0')+'-'+String(m[3]).padStart(2,'0');
+}
+function parseDayRows(rows){
+  const out=[];
+  (rows||[]).forEach(r=>{
+    const d=slashDate(r[0]),c=parseFloat(String(r[6]).replace(/,/g,''));
+    if(d&&isFinite(c)&&c>0)out.push({d,c});
+  });
+  return out;
+}
+/* 回傳該月每日收盤；沒資料（上市前、或不是這個市場）回傳 []；連線失敗才丟錯 */
+function fetchMonth(code,ym){
+  const key=code+'|'+ym;
+  if(histCache[key])return Promise.resolve(histCache[key]);
+  const y=ym.slice(0,4),m=ym.slice(4);
+  const done=rows=>{
+    // 當月資料還在變動，不快取；過去月份才快取
+    if(ym<todayStr().slice(0,4)+todayStr().slice(5,7))histCache[key]=rows;
+    return rows;
+  };
+  return jget('https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date='+ym+'01&stockNo='+encodeURIComponent(code))
+    .then(j=>{
+      if(j&&j.stat==='OK'&&j.data&&j.data.length)return done(parseDayRows(j.data));
+      // 不是上市 → 試櫃買（新舊兩種網址格式各試一次）
+      const roc=(+y-1911)+'/'+m;
+      return jget('https://www.tpex.org.tw/www/zh-tw/afterTrading/tradingStock?code='+encodeURIComponent(code)+'&date='+y+'/'+m+'/01&response=json')
+        .then(t=>parseDayRows((t&&t.tables&&t.tables[0]&&t.tables[0].data)||t.aaData||[]))
+        .catch(()=>[])
+        .then(rows=>rows.length?rows:jget('https://www.tpex.org.tw/web/stock/aftertrading/daily_trading_info/st43_result.php?l=zh-tw&d='+roc+'&stkno='+encodeURIComponent(code))
+          .then(t=>parseDayRows((t&&t.aaData)||[])).catch(()=>[]))
+        .then(done);
+    });
+}
+/* series: {code:[{d,c}]}；回傳 {date:{v,c,p,s:'h'}} */
+function buildHistSnaps(series){
+  const trades=book().trades.slice().sort((x,y)=>x.date<y.date?-1:x.date>y.date?1:(x.seq||0)-(y.seq||0));
+  if(!trades.length)return {};
+  const start=trades[0].date,today=todayStr();
+  const dset={};Object.keys(series).forEach(c=>series[c].forEach(r=>{if(r.d>=start&&r.d<=today)dset[r.d]=1;}));
+  const dates=Object.keys(dset).sort();
+  const idx={},last={},H={};let ti=0;
+  Object.keys(series).forEach(c=>{idx[c]=0;});
+  const out={};
+  dates.forEach(D=>{
+    while(ti<trades.length&&trades[ti].date<=D){      // 套用到這天為止的交易（FIFO，與總覽相同算法）
+      const t=trades[ti++],h=H[t.code]||(H[t.code]={lots:[],shares:0,cost:0});
+      if(t.type==='buy'){h.lots.push({shares:t.shares,price:t.price,fee:t.fee||0});h.shares+=t.shares;h.cost+=t.shares*t.price+(t.fee||0);}
+      else{let left=t.shares,co=0;
+        while(left>0&&h.lots.length){const lot=h.lots[0],take=Math.min(left,lot.shares);
+          co+=take*(lot.price+lot.fee/lot.shares);lot.shares-=take;left-=take;if(lot.shares<=1e-7)h.lots.shift();}
+        h.shares-=t.shares;h.cost=Math.max(0,h.cost-co);}
+    }
+    Object.keys(series).forEach(c=>{
+      const s=series[c];while(idx[c]<s.length&&s[idx[c]].d<=D){last[c]=s[idx[c]].c;idx[c]++;}
+    });
+    let v=0,cost=0,ok=true;
+    Object.keys(H).forEach(c=>{
+      const h=H[c];if(h.shares<=1e-7)return;
+      if(last[c]==null){ok=false;return;}
+      v+=h.shares*last[c];cost+=h.cost;
+    });
+    if(ok&&cost>0)out[D]={v:Math.round(v),c:Math.round(cost),p:+((v-cost)/cost*100).toFixed(3),s:'h'};
+  });
+  return out;
+}
+function mergeHist(hist,fullOk){
+  const b=book();b.snaps=b.snaps||{};const today=todayStr();let n=0;
+  Object.keys(hist).forEach(D=>{
+    const old=b.snaps[D];
+    if(D===today&&old&&old.s==='l')return;              // 今天的即時紀錄不動
+    b.snaps[D]=hist[D];n++;                              // 過去的日子以收盤價為準
+  });
+  if(fullOk){                                            // 假日當天開 App 留下的重複紀錄：不是交易日就移除
+    const first=Object.keys(hist).sort()[0];
+    Object.keys(b.snaps).forEach(D=>{if(b.snaps[D].s==='l'&&D<today&&first&&D>=first&&!hist[D])delete b.snaps[D];});
+  }
+  save();return n;
+}
+function backfillSheet(){
+  const b=book();
+  const codes=Array.from(new Set(b.trades.map(t=>t.code)));
+  if(!codes.length){toast('尚無交易紀錄');return;}
+  sheet('回補歷史報酬率','<p class="muted" style="margin-top:0;font-size:13px;line-height:1.6">'+
+    '依你的買賣日期，抓取各檔從買進當月起的每日收盤價，還原每一天的庫存報酬率。'+
+    '約需數十秒（為避免被證交所限流，會逐月慢慢抓）。'+(isNative()?'':'<br><b>網頁版受瀏覽器跨網域限制，可能抓不到；請使用 Android App。</b>')+'</p>'+
+    '<div id="bfMsg" class="muted" style="min-height:22px;margin-bottom:10px"></div>'+
+    '<button class="btn primary block" id="bfGo">開始回補</button>',el=>{
+    $('#bfGo',el).onclick=()=>{
+      if(backBusy)return;backBusy=true;
+      $('#bfGo',el).disabled=true;
+      const msg=t=>{const m=$('#bfMsg');if(m)m.innerHTML=t;};
+      const cur=todayStr().slice(0,4)+todayStr().slice(5,7);
+      const jobs=[];
+      codes.forEach(c=>{
+        const first=b.trades.filter(t=>t.code===c).map(t=>t.date).sort()[0];
+        let y=+first.slice(0,4),m=+first.slice(5,7);
+        for(;;){const ym=y+String(m).padStart(2,'0');jobs.push({c,ym});if(ym>=cur)break;m++;if(m>12){m=1;y++;}}
+      });
+      const series={};codes.forEach(c=>{series[c]=[];});
+      let i=0,fail=0;
+      const step=()=>{
+        if(i>=jobs.length)return Promise.resolve();
+        const j=jobs[i++];
+        msg('<span class="spin"></span> 抓取中 '+i+' / '+jobs.length+'（'+esc(j.c)+' '+j.ym.slice(0,4)+'/'+j.ym.slice(4)+'）');
+        const cached=!!histCache[j.c+'|'+j.ym];
+        return fetchMonth(j.c,j.ym).then(rows=>{series[j.c]=series[j.c].concat(rows);},()=>{fail++;})
+          .then(()=>cached?0:sleep(700)).then(step);
+      };
+      step().then(()=>{
+        codes.forEach(c=>series[c].sort((x,y)=>x.d<y.d?-1:1));
+        const missing=codes.filter(c=>!series[c].length);
+        const hist=buildHistSnaps(series);
+        const n=Object.keys(hist).length;
+        backBusy=false;
+        if(!n){
+          msg('<span class="down">沒有抓到可用的歷史收盤價'+(fail?'（'+fail+' 個月份連線失敗）':'')+'，請稍後再試。</span>');
+          const g=$('#bfGo');if(g){g.disabled=false;g.textContent='重試';}return;
+        }
+        mergeHist(hist,!fail&&!missing.length);
+        closeSheet();render();
+        toast('已回補 '+n+' 天'+(fail||missing.length?'（部分資料缺漏，可再按一次補齊）':''),3200);
+      }).catch(e=>{backBusy=false;msg('<span class="down">失敗：'+esc(e.message)+'</span>');const g=$('#bfGo');if(g)g.disabled=false;});
+    };
+  });
+}
+
 /* =================== 路由 =================== */
 let TAB='overview';
 function setView(html,fab){
@@ -1379,7 +1610,7 @@ function back(){
   if(TAB!=='overview'){TAB='overview';render();return true;}
   return false;
 }
-window.__app={get S(){return S;},compute,init,render,back,parseRealtime,syncDividends,mergeDivEvents,rocDate,parsePs,set TAB(v){TAB=v;},get TAB(){return TAB;}};
+window.__app={get S(){return S;},compute,init,render,back,parseRealtime,syncDividends,mergeDivEvents,rocDate,parsePs,recordSnap,snapSeries,buildHistSnaps,mergeHist,fetchMonth,slashDate,set TAB(v){TAB=v;},get TAB(){return TAB;}};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
